@@ -26,6 +26,7 @@ public class CollisionDetector : MonoBehaviour
             Physics2D.OverlapBoxAll(collider.bounds.center, collider.bounds.size, 0f, trapMask);
         if (trapColliders.Length > 0)
         {
+            // TODO: clean the code, remove hardcode
             // TODO: detecting multiple types of traps, returning the trap with the highest dealing damage
             GameObject host = trapColliders[0].gameObject;
             if (host.GetComponent<SpriteRenderer>().sprite.name.Substring(0, 7) == "traps__")
