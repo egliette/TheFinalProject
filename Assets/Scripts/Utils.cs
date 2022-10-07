@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// Ham bo tro
 public class Utils
 {
-    // so sanh layer mask cua object
+    // Check if object is in layer mask
     public static bool IsInLayerMask(GameObject obj, LayerMask layerMask)
     {
         return ((layerMask.value & (1 << obj.layer)) > 0);

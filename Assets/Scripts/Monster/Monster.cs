@@ -53,6 +53,12 @@ public class Monster : MonoBehaviour
     private bool DetectTarget()
     {
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_DetectTargetRange, m_HeroMask);
+        // if detect no target, return false
+        if (hitColliders.Length == 0)
+        {
+            m_Target = null;
+            return false;
+        }
 
         float minDistance = float.MaxValue;
 
@@ -66,12 +72,7 @@ public class Monster : MonoBehaviour
             }
         }
 
-        // if detect no target, return false
-        if (hitColliders.Length == 0)
-        {
-            m_Target = null;
-            return false;
-        }
+       
         return true;
     }
 }
