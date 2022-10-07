@@ -26,17 +26,18 @@ public class MonsterBase : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float step = m_Speed * Time.deltaTime;
+        if(m_Target != null)
+        {
+            float step = m_Speed * Time.deltaTime;
 
-        Vector2 prevPos = transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, m_Target.transform.position, step);
-        Vector2 curPos = transform.position;
+            Vector2 prevPos = transform.position;
+            transform.position = Vector2.MoveTowards(transform.position, m_Target.transform.position, step);
+            Vector2 curPos = transform.position;
 
-        Vector3 moveDelta = new Vector3(curPos.x - prevPos.x, curPos.y - prevPos.y, 0);
+            Vector3 moveDelta = new Vector3(curPos.x - prevPos.x, curPos.y - prevPos.y, 0);
 
-        Utils.FlipAnimation(this.gameObject, moveDelta);
-
-
+            Utils.FlipAnimation(this.gameObject, moveDelta);
+        }
     }
 
     // Return true if detect player layermask in detect range
