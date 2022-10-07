@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterBase : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     [SerializeField] private LayerMask m_HeroMask;
     [SerializeField] private float m_Speed = 5f;
     [SerializeField] private float m_DetectTargetRange = 5f;
+    [SerializeField] private MonsterMovement m_MonsterMovement;
 
     private Animator m_Animator;
     private GameObject m_Target = null;
@@ -15,6 +16,8 @@ public class MonsterBase : MonoBehaviour
     void Start()
     {
         m_Animator = GetComponent<Animator>();
+
+        m_MonsterMovement = new MonsterWalking(this.gameObject);
     }
 
     // Update is called once per frame
@@ -28,15 +31,21 @@ public class MonsterBase : MonoBehaviour
     {
         if(m_Target != null)
         {
-            float step = m_Speed * Time.deltaTime;
-
             Vector2 prevPos = transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, m_Target.transform.position, step);
+
+            m_MonsterMovement.Move(m_Target, m_Speed);
+
             Vector2 curPos = transform.position;
-
             Vector3 moveDelta = new Vector3(curPos.x - prevPos.x, curPos.y - prevPos.y, 0);
-
             Utils.FlipAnimation(this.gameObject, moveDelta);
+
+            // start running animation
+            m_Animator.SetFloat("Speed", 1f);
+        }
+        else
+        {
+            m_Animator.SetFloat("Speed", 0f);
+
         }
     }
 
