@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    [SerializeField] private LayerMask m_HeroMask;
+    [SerializeField] private LayerMask m_PlayerMask;
     [SerializeField] private float m_Speed = 5f;
     [SerializeField] private float m_DetectTargetRange = 5f;
     [SerializeField] private MonsterMovement m_MonsterMovement;
@@ -12,24 +12,21 @@ public class Monster : MonoBehaviour
     private Animator m_Animator;
     private GameObject m_Target = null;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         m_Animator = GetComponent<Animator>();
 
         m_MonsterMovement = new MonsterWalking(this.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         DetectTarget();
     }
 
-
     private void FixedUpdate()
     {
-        if(m_Target != null)
+        if (m_Target != null)
         {
             Vector2 prevPos = transform.position;
 
@@ -45,14 +42,13 @@ public class Monster : MonoBehaviour
         else
         {
             m_Animator.SetFloat("Speed", 0f);
-
         }
     }
 
     // Return true if detect player layermask in detect range
     private bool DetectTarget()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_DetectTargetRange, m_HeroMask);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_DetectTargetRange, m_PlayerMask);
         // if detect no target, return false
         if (hitColliders.Length == 0)
         {
@@ -62,7 +58,7 @@ public class Monster : MonoBehaviour
 
         float minDistance = float.MaxValue;
 
-        foreach(Collider2D hitCollider in hitColliders)
+        foreach (Collider2D hitCollider in hitColliders)
         {
             float distanceToHitCollider = Vector2.Distance(transform.position, hitCollider.gameObject.transform.position);
             if (minDistance > distanceToHitCollider)
@@ -72,7 +68,6 @@ public class Monster : MonoBehaviour
             }
         }
 
-       
         return true;
     }
 }
