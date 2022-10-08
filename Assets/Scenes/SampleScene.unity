@@ -478,9 +478,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc8ba9bd2de0d44d957c9af2321aaa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HeroMask:
+  m_PlayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   m_Speed: 5
   m_DetectTargetRange: 5
 --- !u!1 &1284137644
