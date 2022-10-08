@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: d5262ac7aee72d44e916ea2c21ae4eea
+guid: 731cabe2cebca4443a3d0b3c3423019c
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 5560106509769660783
+    second: dungeon_ dungeon__9_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -113,7 +116,32 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: dungeon_ dungeon__9_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -8, y: 3}
+        - {x: -8, y: -3}
+        - {x: 8, y: -3}
+        - {x: 8, y: 3}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6958247967792d40800000000000000
+      internalID: 5560106509769660783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
