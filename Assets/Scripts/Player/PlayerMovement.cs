@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
+    [SerializeField] private BoxCollider2D boxCollider;
     private Animator animator;
+    private RaycastHit2D hit;
 
     [SerializeField] float speed = 10f;
 
@@ -13,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();    
+        // boxCollider = GetComponent<BoxCollider2D>();    
         animator = GetComponent<Animator>();  
     }
 
@@ -34,8 +35,32 @@ public class PlayerMovement : MonoBehaviour
         else if (moveDelta.x < 0)
             transform.localScale = new Vector3(-1, 1, 1);
 
-        transform.Translate(moveDelta * speed * Time.deltaTime);
+        float step = Time.deltaTime * speed;
+        float deltaY = moveDelta.y * step;
+        float deltaX = moveDelta.x * step;
 
+        hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.size, 0, 
+                                new Vector2(0, moveDelta.y),
+                                Mathf.Abs(deltaY),
+                                LayerMask.GetMask("Blocking"));
+        if (hit.collider == null)
+        {
+            transform.Translate(0, deltaY, 0);
+        }
+
+        hit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.size, 0, 
+                                new Vector2(moveDelta.x, 0),
+                                Mathf.Abs(deltaX),
+                                LayerMask.GetMask("Blocking"));
+        if (hit.collider == null)
+        {
+            transform.Translate(deltaX, 0, 0);
+        }
     }
 
+    private void OnDrawGizmos() 
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(boxCollider.bounds.center, boxCollider.size); 
+    }
 }
