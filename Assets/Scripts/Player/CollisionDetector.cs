@@ -28,9 +28,17 @@ public class CollisionDetector : MonoBehaviour
         {
             // TODO: clean the code, remove hardcode
             // TODO: detecting multiple types of traps, returning the trap with the highest dealing damage
-            GameObject host = trapColliders[0].gameObject;
-            if (host.GetComponent<SpriteRenderer>().sprite.name.Substring(0, 7) == "traps__")
+            foreach (Collider2D trapCollider in trapColliders) {
+            GameObject host = trapCollider.gameObject;
+            if (host.transform.parent.gameObject.name == "poison" && ((CircleCollider2D)(trapCollider)).radius == 3)
+                return 2;
+            if (host.transform.parent.gameObject.name == "impaler")
                 return 1;
+            if (host.transform.parent.gameObject.name == "poison" && ((CircleCollider2D)(trapCollider)).radius == 2)
+                return 0;
+            }
+            
+            
         }
         return 0;
     }
