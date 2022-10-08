@@ -3,15 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Terrain
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Blocking
   - 
   - 
   - 
@@ -38,9 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: Floor
     uniqueID: 1834329339
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3088206729
     locked: 0
