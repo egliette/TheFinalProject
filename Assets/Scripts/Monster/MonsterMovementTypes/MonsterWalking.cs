@@ -17,7 +17,6 @@ public class MonsterWalking : MonsterMovement
             float step = speed * Time.deltaTime;
 
             m_Monster.transform.position = Vector2.MoveTowards(m_Monster.transform.position, target.transform.position, step);
-
         }
     }
 
