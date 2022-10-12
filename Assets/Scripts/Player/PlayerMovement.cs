@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
     private Animator animator;
 
-    [SerializeField] float speed = 10f;
+    [SerializeField] public float speed = 10f;
 
     private Vector3 moveDelta;
 
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float dirX = Input.GetAxisRaw("Horizontal");
         float dirY = Input.GetAxisRaw("Vertical");
-
+        
         moveDelta = new Vector3(dirX, dirY, 0);
 
         if (moveDelta != Vector3.zero)
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = Vector3.one;
         else if (moveDelta.x < 0)
             transform.localScale = new Vector3(-1, 1, 1);
-
+    
         transform.Translate(moveDelta * speed * Time.deltaTime);
 
     }
