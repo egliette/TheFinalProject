@@ -26,8 +26,10 @@ public class CollisionDetector : MonoBehaviour
     {
         // TODO: do actual things according to what traps the player is colliding with 
         List<int> traps = collidedWithTraps();
+        Debug.Log(traps.Count);
         if (traps.Count > 0)
         {
+            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
             if (traps.Contains(1))
                 ;   // deal damage
             if (traps.Contains(2))
@@ -53,13 +55,14 @@ public class CollisionDetector : MonoBehaviour
             foreach (Collider2D trapCollider in trapColliders) {
                 GameObject host = trapCollider.gameObject;
                 
-                if (host.transform.parent.gameObject.name == "poison" && ((CircleCollider2D)(trapCollider)).radius == .4f)
+                if (host.transform.parent.gameObject.name == "traps__6" || 
+                    host.transform.parent.gameObject.name.Substring(0, 5) == "trap1")
                     if (!list.Contains(2))
                         list.Add(2);
-                else if (host.transform.parent.gameObject.name == "impaler")
+                else if (host.transform.parent.gameObject.name == "impaler" || host.name.Substring(0, 5) == "trap0")
                         if (!list.Contains(1))
                             list.Add(1);
-                else if (host.transform.parent.gameObject.name == "trapdoor")
+                else if (host.transform.parent.gameObject.name == "trapdoor" || host.name.Substring(0, 5) == "trap2")
                             if (!list.Contains(3))
                                 list.Add(3);
             }

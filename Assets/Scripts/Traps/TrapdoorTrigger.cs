@@ -12,6 +12,7 @@ public class TrapdoorTrigger : TrapTrigger
         anim = GetComponent<Animator>();
         playerMask = LayerMask.GetMask(name_);
         anim.enabled = false;
+        colliders[0].enabled = false;
     }
 
     protected override void OnUpdate()
@@ -26,7 +27,7 @@ public class TrapdoorTrigger : TrapTrigger
     // Update is called once per frame
     protected override bool triggered()
     {
-        BoxCollider2D triggerCollider = (BoxCollider2D)colliders[0];
+        BoxCollider2D triggerCollider = (BoxCollider2D)colliders[1];
         return Physics2D.OverlapBoxAll(triggerCollider.bounds.center, triggerCollider.bounds.size, 0f, playerMask).Length > 0;
     }
 }

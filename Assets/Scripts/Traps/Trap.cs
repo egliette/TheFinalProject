@@ -17,7 +17,14 @@ namespace Assets.Scripts.Traps
         
         protected void Start()
         {
-            
+            animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            script = new Dictionary<string, MonoBehaviour>();
+            foreach (MonoBehaviour s in GetComponents<MonoBehaviour>())
+            {
+                script[s.name] = s;
+            }
+            colliders = GetComponents<Collider2D>();
         }
 
         protected void Update()
