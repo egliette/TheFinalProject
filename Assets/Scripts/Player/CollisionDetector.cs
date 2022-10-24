@@ -26,7 +26,7 @@ public class CollisionDetector : MonoBehaviour
     {
         // TODO: do actual things according to what traps the player is colliding with 
         List<int> traps = collidedWithTraps();
-        Debug.Log(traps.Count);
+        Debug.Log(traps.ToString());
         if (traps.Count > 0)
         {
             GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
@@ -54,17 +54,20 @@ public class CollisionDetector : MonoBehaviour
         {
             foreach (Collider2D trapCollider in trapColliders) {
                 GameObject host = trapCollider.gameObject;
-                
-                if (host.transform.parent.gameObject.name == "traps__6" || 
-                    host.transform.parent.gameObject.name.Substring(0, 5) == "trap1")
+                //Debug.Log(host.name);
+                if (host.transform.parent.gameObject.name == "traps__6" || host.name.Substring(0, 5) == "trap1")
+                {
                     if (!list.Contains(2))
                         list.Add(2);
-                else if (host.transform.parent.gameObject.name == "impaler" || host.name.Substring(0, 5) == "trap0")
-                        if (!list.Contains(1))
-                            list.Add(1);
-                else if (host.transform.parent.gameObject.name == "trapdoor" || host.name.Substring(0, 5) == "trap2")
-                            if (!list.Contains(3))
-                                list.Add(3);
+                }
+                else if (host.transform.parent.gameObject.name == "impaler" || host.name.Substring(0, 5).Equals("trap0"))
+                {
+                    if (!list.Contains(1))
+                        list.Add(1);
+                }
+                else if (host.transform.parent.gameObject.name == "trapdoor" || host.name.Substring(0, 5).Equals("trap2"))
+                    if (!list.Contains(3))
+                        list.Add(3);
             }
                         
         }
