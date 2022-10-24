@@ -1,7 +1,31 @@
 fileFormatVersion: 2
 guid: 5f0e62b663a73e74d87b716a8c931e67
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -4237633779910154236
+    second: acid__0
+  - first:
+      213: 935901060708913663
+    second: acid__1
+  - first:
+      213: -5957667422702232105
+    second: acid__2
+  - first:
+      213: -3823651695658733792
+    second: acid__3
+  - first:
+      213: -3248745376275437262
+    second: acid__4
+  - first:
+      213: 8654712200868730050
+    second: acid__5
+  - first:
+      213: 8572390711851211819
+    second: acid__6
+  - first:
+      213: 4417056421932475430
+    second: acid__7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -236,6 +260,48 @@ TextureImporter:
       bones: []
       spriteID: 2c4150e54e6bb1870800000000000000
       internalID: 8654712200868730050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: acid__6
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 27
+        width: 12
+        height: 10
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2cdfb71fef37f670800000000000000
+      internalID: 8572390711851211819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: acid__7
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 27
+        width: 10
+        height: 9
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 624a426c9698c4d30800000000000000
+      internalID: 4417056421932475430
       vertices: []
       indices: 
       edges: []
