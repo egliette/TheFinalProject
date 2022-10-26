@@ -4,38 +4,69 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private BoxCollider2D boxCollider;
-    private Animator animator;
+    
+    [SerializeField] float m_Speed = 10f;
 
-    [SerializeField] public float speed = 10f;
-
-    private Vector3 moveDelta;
+    private Animator m_Animator;
+    private RaycastHit2D m_Hit;
+    private BoxCollider2D m_BoxCollider;
+    private SpriteRenderer m_Sprite;
+    private Vector3 m_MoveDelta;
 
     private void Start()
     {
-        boxCollider = GetComponent<BoxCollider2D>();    
-        animator = GetComponent<Animator>();  
+        m_BoxCollider = GetComponent<BoxCollider2D>();    
+        m_Animator = GetComponent<Animator>();  
+        m_Sprite = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate() 
     {
+        FaceMouse();
+
         float dirX = Input.GetAxisRaw("Horizontal");
         float dirY = Input.GetAxisRaw("Vertical");
-        
-        moveDelta = new Vector3(dirX, dirY, 0);
 
-        if (moveDelta != Vector3.zero)
-            animator.SetBool("running", true);
+        m_MoveDelta = new Vector3(dirX, dirY, 0);
+
+        if (m_MoveDelta != Vector3.zero)
+            m_Animator.SetBool("running", true);
         else
-            animator.SetBool("running", false);
+            m_Animator.SetBool("running", false);
 
-        if (moveDelta.x > 0)
-            transform.localScale = Vector3.one;
-        else if (moveDelta.x < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
-    
-        transform.Translate(moveDelta * speed * Time.deltaTime);
+        float step = Time.deltaTime * m_Speed;
+        float deltaY = m_MoveDelta.y * step;
+        float deltaX = m_MoveDelta.x * step;
 
+        m_Hit = Physics2D.BoxCast(m_BoxCollider.bounds.center, m_BoxCollider.size, 0, 
+                                new Vector2(0, m_MoveDelta.y),
+                                Mathf.Abs(deltaY),
+                                LayerMask.GetMask("Blocking"));
+        if (m_Hit.collider == null)
+        {
+            transform.Translate(0, deltaY, 0);
+        }
+
+        m_Hit = Physics2D.BoxCast(m_BoxCollider.bounds.center, m_BoxCollider.size, 0, 
+                                new Vector2(m_MoveDelta.x, 0),
+                                Mathf.Abs(deltaX),
+                                LayerMask.GetMask("Blocking"));
+        if (m_Hit.collider == null)
+        {
+            transform.Translate(deltaX, 0, 0);
+        }
     }
 
+    private void FaceMouse()
+    {
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 screenPoint = Camera.main.ScreenToWorldPoint(transform.position);
+        Vector2 direction = mousePos - (Vector2)transform.position;
+        
+        float rotZ = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (rotZ < 90 && rotZ > -90)
+            m_Sprite.flipX = false;
+        else
+            m_Sprite.flipX = true;
+    }
 }
