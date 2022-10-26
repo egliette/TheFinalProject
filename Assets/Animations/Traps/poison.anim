@@ -30,16 +30,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 2
+        time: 1.4166667
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -51,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: acid__0
+    path: Acid
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves:
@@ -66,7 +57,7 @@ AnimationClip:
       value: {fileID: 5406451881221032195, guid: 5b176472977e3f046b1804a7f02e24c6, type: 3}
     - time: 0.6666667
       value: {fileID: 8955170828604909166, guid: 5b176472977e3f046b1804a7f02e24c6, type: 3}
-    - time: 2
+    - time: 1.4166666
       value: {fileID: 8955170828604909166, guid: 5b176472977e3f046b1804a7f02e24c6, type: 3}
     attribute: m_Sprite
     path: 
@@ -80,7 +71,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 1655801865
+      path: 3063799954
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -105,7 +96,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.0833333
+    m_StopTime: 1.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -134,16 +125,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.6666667
-        value: 1
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 2
+        time: 1.4166667
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -155,7 +137,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: acid__0
+    path: Acid
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
