@@ -37,7 +37,7 @@ public class ApproachTargetState : IMonsterState
 
     private void MoveMonster()
     {
-        m_Monster.GetMonsterMovement().Move(m_Monster.GetTarget().transform, m_Monster.GetMonsterConfig().speed);
+        m_Monster.GetMonsterMovement().Move(m_Monster.GetTarget().transform);
     }
 
 }

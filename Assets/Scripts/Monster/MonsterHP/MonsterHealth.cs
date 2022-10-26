@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MonsterHealth : MonoBehaviour
 {
+    [SerializeField] private Monster m_Monster;
     private float m_StartHealth;
     private float m_CurrentHealth;
     private bool m_Dead;
@@ -14,11 +15,11 @@ public class MonsterHealth : MonoBehaviour
         m_Dead = false;
     }
 
+
     private void OnDeath()
     {
-        Debug.Log("Monster Dead");
         m_Dead = true;
-        gameObject.SetActive(false);
+        m_Monster.OnDeadUI();
     }
 
 
@@ -36,8 +37,9 @@ public class MonsterHealth : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        Debug.Log("TAKEDAMAGE");
         m_CurrentHealth -= amount;
-        if (m_CurrentHealth < 0 && !m_Dead)
+        if (m_CurrentHealth <= 0 && !m_Dead)
         {
             OnDeath();
         }

@@ -68,7 +68,6 @@ public partial class Monster : MonoBehaviour
     #region getter setter
     public MonsterConfig GetMonsterConfig()
     {
-        Debug.Log("sdada");
         return m_MonsterConfig;
     }
     public LayerMask GetPlayerMask()

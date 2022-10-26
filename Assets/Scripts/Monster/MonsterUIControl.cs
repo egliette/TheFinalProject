@@ -34,4 +34,10 @@ public partial class Monster
     }
 
 
+    public void OnDeadUI()
+    {
+        m_Animator.SetBool("Dead", true);
+    }
+
+
 }

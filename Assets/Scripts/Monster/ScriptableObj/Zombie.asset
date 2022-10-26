@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Zombie
   m_EditorClassIdentifier: 
   monsterID: 0
-  monsterName: 
-  health: 0
-  speed: 0
-  detectTargetRange: 0
+  monsterName: Zombie
+  health: 10
+  speed: 8
+  detectTargetRange: 5
   attackType: 0
-  attackRange: 0
-  damage: 0
-  monsterAnimator: {fileID: 0}
+  attackRange: 1
+  damage: 5
+  monsterAnimator: {fileID: 9100000, guid: 3f92058300a29ad49b0f76ca93daa49e, type: 2}

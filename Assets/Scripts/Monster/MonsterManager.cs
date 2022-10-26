@@ -23,7 +23,7 @@ public class MonsterManager : MonoBehaviour
     {
         m_ActiveMonsters = new List<Monster>();
         m_MonsterAssets = new MonsterAssetsPath();
-        CreateNewMonster(monsterConfigs[1], new Vector3(0, 0, 0));
+        CreateNewMonster(monsterConfigs[1], new Vector3(-10, 0, 0));
     }
 
 
