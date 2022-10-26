@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: ecfeca27d63203d43a6e386c0e5c179e
+guid: d1b59c544b2bcb8408a48a60c9f3da75
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -740790965210288447
-    second: zombie_attack_0
+      213: 5956045756574829378
+    second: chonker_attack_0
   - first:
-      213: -7199097879010782113
-    second: zombie_attack_1
+      213: -6744334876187139528
+    second: chonker_attack_1
   - first:
-      213: -301634997788585293
-    second: zombie_attack_2
+      213: -6274235170643849319
+    second: chonker_attack_2
   - first:
-      213: -5708923512371970796
-    second: zombie_attack_3
+      213: 1329906285818966608
+    second: chonker_attack_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 13
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: zombie_attack_0
+      name: chonker_attack_0
       rect:
         serializedVersion: 2
         x: 0
@@ -117,14 +117,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ce62d1ca8e28b5f0800000000000000
-      internalID: -740790965210288447
+      spriteID: 24b8d922f0028a250800000000000000
+      internalID: 5956045756574829378
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie_attack_1
+      name: chonker_attack_1
       rect:
         serializedVersion: 2
         x: 32
@@ -138,14 +138,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f545b4a1f9aa71c90800000000000000
-      internalID: -7199097879010782113
+      spriteID: 8326692c92f4762a0800000000000000
+      internalID: -6744334876187139528
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie_attack_2
+      name: chonker_attack_2
       rect:
         serializedVersion: 2
         x: 64
@@ -159,14 +159,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b25cf0519060dbf0800000000000000
-      internalID: -301634997788585293
+      spriteID: 99fc288ca507de8a0800000000000000
+      internalID: -6274235170643849319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: zombie_attack_3
+      name: chonker_attack_3
       rect:
         serializedVersion: 2
         x: 96
@@ -180,8 +180,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 41d713b0054d5c0b0800000000000000
-      internalID: -5708923512371970796
+      spriteID: 0527cc688b6c47210800000000000000
+      internalID: 1329906285818966608
       vertices: []
       indices: 
       edges: []
