@@ -5,13 +5,14 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int m_StartingHealth = 10;
+    [SerializeField] private int m_CurrentHealth;
     [SerializeField] private float m_HurtDelayTime = 0.5f;
     [SerializeField] private Behaviour[] m_Components;
     [SerializeField] private HealthBar m_HealthBar;
 
     private SpriteRenderer m_Sprite;
     private Animator m_Animator;
-    [SerializeField] private int m_CurrentHealth;
+    
     private bool m_Invincible = false;
 
     private void Start() 
@@ -60,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
         m_Invincible = false;
     }
 
-    private void Die()
+    public void Die()
     {
         m_Animator.SetTrigger("death");
         foreach (Behaviour component in m_Components)
