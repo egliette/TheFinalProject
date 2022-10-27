@@ -2,72 +2,95 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour
+public partial class Monster : MonoBehaviour
 {
     [SerializeField] private LayerMask m_PlayerMask;
-    [SerializeField] private float m_Speed = 5f;
-    [SerializeField] private float m_DetectTargetRange = 5f;
+    [SerializeField] private MonsterConfig m_MonsterConfig;
     [SerializeField] private MonsterMovement m_MonsterMovement;
+    [SerializeField] private MonsterHealth m_MonsterHealth;
+    [SerializeField] private MonsterAttack m_MonsterAttack;
 
-    private Animator m_Animator;
-    private GameObject m_Target = null;
 
-    private void Start()
+    // define monster states
+    private IMonsterState m_MonsterCurrentState;
+    public IdleState m_MonsterIdleState;
+    public AttackState m_MonsterAttackState;
+    public ApproachTargetState m_MonsterApproachTargetState;
+    private GameObject m_Target;
+
+
+    private void Awake()
     {
+        m_MonsterIdleState = new IdleState(this);
+        m_MonsterAttackState = new AttackState(this);
+        m_MonsterApproachTargetState = new ApproachTargetState(this);
+        m_MonsterCurrentState = m_MonsterIdleState;
+
         m_Animator = GetComponent<Animator>();
-
-        m_MonsterMovement = new MonsterWalking(this.gameObject);
-    }
-
-    private void Update()
-    {
-        DetectTarget();
     }
 
     private void FixedUpdate()
     {
-        if (m_Target != null)
-        {
-            Vector2 prevPos = transform.position;
+        Vector2 prevPos = transform.position;
+       
+        // do behaviors depend on current state
+        m_MonsterCurrentState = m_MonsterCurrentState.DoState();
 
-            m_MonsterMovement.Move(m_Target, m_Speed);
-
-            Vector2 curPos = transform.position;
-            Vector3 moveDelta = new Vector3(curPos.x - prevPos.x, curPos.y - prevPos.y, 0);
-            Utils.FlipAnimation(this.gameObject, moveDelta);
-
-            // start running animation
-            m_Animator.SetFloat("Speed", 1f);
-        }
-        else
-        {
-            m_Animator.SetFloat("Speed", 0f);
-        }
+        // flip animation
+        Vector2 curPos = transform.position;
+        Vector3 moveDelta = new Vector3(curPos.x - prevPos.x, curPos.y - prevPos.y, 0);
+        Utils.FlipAnimation(gameObject, moveDelta);
     }
 
-    // Return true if detect player layermask in detect range
-    private bool DetectTarget()
+    public void ConfigMonsterData(MonsterConfig config)
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_DetectTargetRange, m_PlayerMask);
-        // if detect no target, return false
-        if (hitColliders.Length == 0)
-        {
-            m_Target = null;
-            return false;
-        }
+        // set config for later use
+        m_MonsterConfig = config;
+        
+        // set animator controller
+        m_Animator.runtimeAnimatorController = config.monsterAnimator;
 
-        float minDistance = float.MaxValue;
-
-        foreach (Collider2D hitCollider in hitColliders)
-        {
-            float distanceToHitCollider = Vector2.Distance(transform.position, hitCollider.gameObject.transform.position);
-            if (minDistance > distanceToHitCollider)
-            {
-                minDistance = distanceToHitCollider;
-                m_Target = hitCollider.gameObject;
-            }
-        }
-
-        return true;
+        // set up data for different monster's component
+        GetMonsterHealth().ConfigMonsterData(config);
+        GetMonsterMovement().ConfigMonsterData(config);
+        GetMonsterAttack().ConfigMonsterData(config);
     }
+
+
+    #region getter setter
+    public MonsterConfig GetMonsterConfig()
+    {
+        return m_MonsterConfig;
+    }
+    public LayerMask GetPlayerMask()
+    {
+        return m_PlayerMask;
+    }
+
+    public MonsterMovement GetMonsterMovement()
+    {
+        return m_MonsterMovement;
+    }
+
+    public MonsterHealth GetMonsterHealth()
+    {
+        return m_MonsterHealth;
+    }
+
+    public MonsterAttack GetMonsterAttack()
+    {
+        return m_MonsterAttack;
+    }
+
+    public GameObject GetTarget()
+    {
+        return m_Target;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        m_Target = target;
+    }
+
+    #endregion
 }

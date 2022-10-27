@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class Enums
 {
-    public enum MonsterMovementType
+    public enum MonsterBehavior
     {
-        // Walking monsters chase after player
-        WALK,
-        // Monsters that can teleport toward player every INTERVAL seconds
-        TELEPORT,
-        // ... out of creativity :))
+        IDLE = 0,
+        APPROACH_FOR_TARGET = 1,
+        ATTACK = 2
+    }
+
+
+
+    public enum MonsterAttackType
+    {
+        // Close-ranged attack without any weapons
+        NORMAL = 0,
+        // Use weapons to attack if targets are in range of monsters attack
+        RANGE = 1,
+        // Explode
+        EXPLODE = 2
     }
 }
