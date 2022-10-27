@@ -23,14 +23,13 @@ public class MonsterManager : MonoBehaviour
     {
         m_ActiveMonsters = new List<Monster>();
         m_MonsterAssets = new MonsterAssetsPath();
-        CreateNewMonster(monsterConfigs[1], new Vector3(-10, 0, 0));
     }
 
 
     public Monster CreateNewMonster(MonsterConfig monsterConfig, Vector3 position)
     {
         // create a game object presenting monster
-        GameObject newMonsterObj = Object.Instantiate(m_MonsterPrefab, position, Quaternion.identity);
+        GameObject newMonsterObj = Instantiate(m_MonsterPrefab, position, Quaternion.identity);
         Monster newMonster = newMonsterObj.GetComponent<Monster>();
 
         // Change sprite, animation and intialize config depend on monster type

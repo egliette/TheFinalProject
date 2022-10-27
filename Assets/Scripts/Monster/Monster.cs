@@ -28,7 +28,10 @@ public partial class Monster : MonoBehaviour
 
         m_Animator = GetComponent<Animator>();
 
-
+        if(m_MonsterConfig != null)
+        {
+            ConfigMonsterData(m_MonsterConfig);
+        }
     }
 
 
