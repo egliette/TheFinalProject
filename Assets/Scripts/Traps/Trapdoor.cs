@@ -21,7 +21,7 @@ public class Trapdoor : MonoBehaviour
     {
         if (m_Anim.GetBool("active") && m_IsPlayerInArea)
         {
-            m_PlayerHealth.TakeDamage(100);
+            m_PlayerHealth.Die();
         }
     }
 
