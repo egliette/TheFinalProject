@@ -38,11 +38,9 @@ public partial class Monster : MonoBehaviour
     private void FixedUpdate()
     {
         Vector2 prevPos = transform.position;
-
-       
+               
         // do behaviors depend on current state
         m_MonsterCurrentState = m_MonsterCurrentState.DoState();
-
 
         // flip animation
         Vector2 curPos = transform.position;
@@ -65,7 +63,6 @@ public partial class Monster : MonoBehaviour
         GetMonsterMovement().ConfigMonsterData(config);
         GetMonsterAttack().ConfigMonsterData(config);
     }
-
 
 
     #region getter setter

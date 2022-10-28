@@ -28,11 +28,9 @@ public partial class Monster
     {
         // stop attack animation
         m_Animator.SetBool("OnAttack", false);
-
         // stop running animation
         m_Animator.SetFloat("Speed", 0f);
     }
-
 
     public void OnDeadUI()
     {
