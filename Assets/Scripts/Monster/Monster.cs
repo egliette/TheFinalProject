@@ -27,12 +27,17 @@ public partial class Monster : MonoBehaviour
         m_MonsterCurrentState = m_MonsterIdleState;
 
         m_Animator = GetComponent<Animator>();
+
+        if(m_MonsterConfig != null)
+        {
+            ConfigMonsterData(m_MonsterConfig);
+        }
     }
 
     private void FixedUpdate()
     {
         Vector2 prevPos = transform.position;
-       
+               
         // do behaviors depend on current state
         m_MonsterCurrentState = m_MonsterCurrentState.DoState();
 

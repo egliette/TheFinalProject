@@ -5,25 +5,22 @@ using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
-
     [SerializeField] private BoxCollider2D m_BoxCollider;
     private float m_Speed;
     private RaycastHit2D m_Hit;
+    private float m_RandomDistanceToTarget = 2f;
+
 
     public void Move(Transform target)
     {
         if (target != null)
         {
-
-
-
-            Vector3 dir = target.position - transform.position;
+            Vector3 randomDeltaDistance = new Vector3(UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), 0);
+            Vector3 dir = target.position + randomDeltaDistance - transform.position;
 
             Vector3 moveDelta = new Vector3(dir.x, dir.y, 0);
 
             moveDelta.Normalize();
-
-          
 
             float step = Time.deltaTime * m_Speed;
             float deltaY = moveDelta.y * step;
@@ -46,7 +43,6 @@ public class MonsterMovement : MonoBehaviour
             {
                 transform.Translate(deltaX, 0, 0);
             }
-
         }
     }
 
