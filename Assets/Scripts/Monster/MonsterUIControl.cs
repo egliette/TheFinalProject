@@ -36,6 +36,4 @@ public partial class Monster
     {
         m_Animator.SetBool("Dead", true);
     }
-
-
 }

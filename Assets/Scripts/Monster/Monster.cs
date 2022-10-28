@@ -34,7 +34,6 @@ public partial class Monster : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
         Vector2 prevPos = transform.position;
@@ -46,10 +45,8 @@ public partial class Monster : MonoBehaviour
         Vector2 curPos = transform.position;
         Vector3 moveDelta = new Vector3(curPos.x - prevPos.x, curPos.y - prevPos.y, 0);
         Utils.FlipAnimation(gameObject, moveDelta);
-
     }
 
-    
     public void ConfigMonsterData(MonsterConfig config)
     {
         // set config for later use
