@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Monster: {fileID: 342288834990566413}
+  m_Sprite: {fileID: 342288834990566415}
 --- !u!114 &342288834990566400
 MonoBehaviour:
   m_ObjectHideFlags: 0
