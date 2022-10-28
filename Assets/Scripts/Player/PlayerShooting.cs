@@ -9,7 +9,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject[] m_Bullets;
     [SerializeField] private float m_ShootCooldown = 0.1f;
     [SerializeField] private Transform m_FirePoint;
-    
+     public float m_ShootDamage = 1f;
+
     private SpriteRenderer m_GunSprite;
     private Vector2 m_Direction;
 
