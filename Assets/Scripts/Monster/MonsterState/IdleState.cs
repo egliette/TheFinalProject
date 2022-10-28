@@ -5,10 +5,13 @@ using UnityEngine;
 public class IdleState : IMonsterState
 {
     private Monster m_Monster;
+
+    
     public IdleState(Monster monster)
     {
         m_Monster = monster;
     }
+
     public IMonsterState DoState()
     {
         m_Monster.OnIdleUI();
@@ -50,9 +53,5 @@ public class IdleState : IMonsterState
                 m_Monster.SetTarget(hitCollider.gameObject);
             }
         }
-
-
     }
-
-
 }

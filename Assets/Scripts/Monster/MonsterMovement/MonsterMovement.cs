@@ -8,15 +8,15 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D m_BoxCollider;
     private float m_Speed;
     private RaycastHit2D m_Hit;
-    private float m_RandomDistanceToTarget = 2f;
+    // private float m_RandomDistanceToTarget = 2f;
 
 
     public void Move(Transform target)
     {
         if (target != null)
         {
-            Vector3 randomDeltaDistance = new Vector3(UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), 0);
-            Vector3 dir = target.position + randomDeltaDistance - transform.position;
+            // Vector3 randomDeltaDistance = new Vector3(UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), 0);
+            Vector3 dir = target.position - transform.position;
 
             Vector3 moveDelta = new Vector3(dir.x, dir.y, 0);
 

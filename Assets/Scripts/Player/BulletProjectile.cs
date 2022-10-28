@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletProjectile : MonoBehaviour
 {
     [SerializeField] private float m_Speed = 20f;
+    [SerializeField] private PlayerShooting m_PlayerShooting;
     
     private BoxCollider2D m_Coll;
     private bool m_Hit;
@@ -57,6 +58,12 @@ public class BulletProjectile : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Blocking"))
         {
             Explode();
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Explode();
+            MonsterHealth monsterHealth = collision.gameObject.transform.GetComponent<MonsterHealth>();
+            monsterHealth.TakeDamage(m_PlayerShooting.m_ShootDamage);
         }
     }
 

@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     private Animator m_Animator;
     
     private bool m_Invincible = false;
+    private bool m_IsDeath = false;
 
     private void Start() 
     {
@@ -23,16 +24,20 @@ public class PlayerHealth : MonoBehaviour
         m_Animator = GetComponent<Animator>();
     }
 
+
     public void TakeDamage(int damage)
     {
-        if (m_Invincible == true)
+        if (m_Invincible == true || m_IsDeath)
             return;
         
         m_Invincible = true;
         m_CurrentHealth = m_CurrentHealth - damage;
+
         if (m_CurrentHealth < 0)
             m_CurrentHealth = 0;
+
         m_HealthBar.SetHealth(m_CurrentHealth);
+        
         if (m_CurrentHealth > 0)
         {
             StartCoroutine(Hurt());
@@ -63,9 +68,14 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        if (m_IsDeath)
+            return;
+            
+        m_IsDeath = true;
+        m_HealthBar.SetHealth(0);
         m_Animator.SetTrigger("death");
         foreach (Behaviour component in m_Components)
-            component.enabled = false;
+            component.enabled = false;  
     }
 
     private void OnTriggerStay2D(Collider2D collision) 
