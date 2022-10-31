@@ -18,4 +18,11 @@ public class Utils
         else if (moveDelta.x < 0)
             obj.transform.localScale = new Vector3(-1, 1, 1);
     }
+
+    public static void Flip (Transform transform)
+    {
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
 }

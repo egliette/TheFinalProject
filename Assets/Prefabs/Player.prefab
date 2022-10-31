@@ -159,14 +159,14 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.0001
-  m_LinearDrag: 0
+  m_LinearDrag: 15
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!114 &6509132546810881045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,13 +179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bec5287a2c34b54d97a736cfebbd8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_StartingHealth: 10
+  m_StartingHealth: 100
+  m_CurrentHealth: 0
   m_HurtDelayTime: 0.5
   m_Components:
   - {fileID: 6509132546810881035}
   - {fileID: 6509132546810881044}
   m_HealthBar: {fileID: 0}
-  m_CurrentHealth: 0
 --- !u!114 &6509132546810881044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,4 +198,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d087bd8d37585a489d4f3dd1c07130f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_gun: {fileID: 0}
+  m_Gun: {fileID: 0}
+  m_Bullets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_ShootCooldown: 0.1
+  m_FirePoint: {fileID: 0}
+  m_ShootDamage: 1

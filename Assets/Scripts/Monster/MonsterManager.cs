@@ -23,6 +23,7 @@ public class MonsterManager : MonoBehaviour
     {
         m_ActiveMonsters = new List<Monster>();
         m_MonsterAssets = new MonsterAssetsPath();
+
     }
 
 

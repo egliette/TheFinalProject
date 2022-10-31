@@ -12,6 +12,7 @@ public class MonsterConfig : ScriptableObject
     public float health;
 
     // movement behaviors
+    public Enums.MonsterMovementType movementType;
     public float speed;
     public float detectTargetRange;
 
@@ -19,6 +20,7 @@ public class MonsterConfig : ScriptableObject
     public Enums.MonsterAttackType attackType;
     public float attackRange;
     public float damage;
+    public float attackRate;
 
     public RuntimeAnimatorController monsterAnimator;
 }

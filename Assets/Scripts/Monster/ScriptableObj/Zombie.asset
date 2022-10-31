@@ -15,9 +15,11 @@ MonoBehaviour:
   monsterID: 0
   monsterName: Zombie
   health: 10
+  movementType: 0
   speed: 8
-  detectTargetRange: 100
-  attackType: 0
-  attackRange: 1
+  detectTargetRange: 5
+  attackType: 1
+  attackRange: 3
   damage: 1
+  attackRate: 1
   monsterAnimator: {fileID: 9100000, guid: 3f92058300a29ad49b0f76ca93daa49e, type: 2}

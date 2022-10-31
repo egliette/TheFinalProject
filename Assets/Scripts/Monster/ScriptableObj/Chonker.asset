@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterID: 1
   monsterName: Chonker
-  health: 0
+  health: 20
+  movementType: 0
   speed: 5
   detectTargetRange: 7
   attackType: 0
   attackRange: 1
   damage: 10
+  attackRate: 2
   monsterAnimator: {fileID: 9100000, guid: 015451bfab8234f4690cce51c4d8b6b6, type: 2}

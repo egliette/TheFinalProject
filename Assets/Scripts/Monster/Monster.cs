@@ -11,20 +11,21 @@ public partial class Monster : MonoBehaviour
     [SerializeField] private MonsterAttack m_MonsterAttack;
 
 
-    // define monster states
-    private IMonsterState m_MonsterCurrentState;
-    public IdleState m_MonsterIdleState;
-    public AttackState m_MonsterAttackState;
-    public ApproachTargetState m_MonsterApproachTargetState;
     private GameObject m_Target;
 
 
+    // define monster states
+    private Enums.MonsterBehavior m_CurrentStatus = Enums.MonsterBehavior.IDLE;
+
+    // 1: RIGHT, -1: LEFT
+    private int m_PrevDirection = 1;
+    private int m_CurrentDirection = 1;
+    private int RIGHT = 1;
+    private int LEFT = -1;
+
     private void Awake()
     {
-        m_MonsterIdleState = new IdleState(this);
-        m_MonsterAttackState = new AttackState(this);
-        m_MonsterApproachTargetState = new ApproachTargetState(this);
-        m_MonsterCurrentState = m_MonsterIdleState;
+        m_PrevPos = transform.position;
 
         m_Animator = GetComponent<Animator>();
 
@@ -34,17 +35,49 @@ public partial class Monster : MonoBehaviour
         }
     }
 
+
     private void FixedUpdate()
     {
-        Vector2 prevPos = transform.position;
-               
-        // do behaviors depend on current state
-        m_MonsterCurrentState = m_MonsterCurrentState.DoState();
+        FlipAnimation();
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        GameObject obj = collision.gameObject;
+        if(Utils.IsInLayerMask(obj, m_PlayerMask))
+        {
+            PlayerHealth playerHealth = obj.GetComponent<PlayerHealth>();
+            if (playerHealth)
+            {
+                playerHealth.TakeDamage(10);
+            }
+        }
+    }
+
+    private void FlipAnimation()
+    {
         // flip animation
         Vector2 curPos = transform.position;
-        Vector3 moveDelta = new Vector3(curPos.x - prevPos.x, curPos.y - prevPos.y, 0);
-        Utils.FlipAnimation(gameObject, moveDelta);
+        float dx = curPos.x - m_PrevPos.x;
+        //Utils.FlipAnimation(gameObject, moveDelta);
+        m_PrevPos = curPos;
+
+        // facing right
+        if (dx > 0)
+        {
+            m_CurrentDirection = RIGHT;
+        }
+        // facing left
+        else if (dx < 0)
+        {
+            m_CurrentDirection = LEFT;
+        }
+
+        if (m_CurrentDirection != m_PrevDirection)
+        {
+            Utils.Flip(transform);
+        }
+        m_PrevDirection = m_CurrentDirection;
     }
 
     public void ConfigMonsterData(MonsterConfig config)
@@ -95,6 +128,16 @@ public partial class Monster : MonoBehaviour
     public void SetTarget(GameObject target)
     {
         m_Target = target;
+    }
+
+    public Enums.MonsterBehavior GetCurrentStatus()
+    {
+        return m_CurrentStatus;
+    }
+
+    public void SetCurrentStatus(Enums.MonsterBehavior status)
+    {
+        m_CurrentStatus = status;
     }
 
     #endregion

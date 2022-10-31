@@ -5,7 +5,7 @@ using UnityEngine;
 public partial class Monster
 {
     private Animator m_Animator;
-
+    private Vector3 m_PrevPos;
 
     public void OnAtackUI()
     {
@@ -16,7 +16,7 @@ public partial class Monster
 
     }
 
-    public void OnRunningUI()
+    public void OnMovingUI()
     {
         // stop attack animation
         m_Animator.SetBool("OnAttack", false);
@@ -35,5 +35,7 @@ public partial class Monster
     public void OnDeadUI()
     {
         m_Animator.SetBool("Dead", true);
+        m_Animator.SetFloat("Speed", 0);
+        m_Animator.SetBool("OnAttack", false);
     }
 }
