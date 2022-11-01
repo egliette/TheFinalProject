@@ -30,4 +30,13 @@ public class Enums
         WALKING = 0,
         JUMPING = 1
     }
+
+
+    public enum PropType
+    {
+        // prop can be destroy an do nothing
+        NORMAL = 0,
+        // explode after being destroy
+        EXPLODE
+    }
 }

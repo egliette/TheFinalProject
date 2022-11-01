@@ -23,12 +23,17 @@ public class MonsterManager : MonoBehaviour
     {
         m_ActiveMonsters = new List<Monster>();
         m_MonsterAssets = new MonsterAssetsPath();
+        CreateNewMonster(0, new Vector3(-10, 0, 0));
+        CreateNewMonster(0, new Vector3(-10, 4, 0));
+        CreateNewMonster(0, new Vector3(-10, 10, 0));
+        CreateNewMonster(0, new Vector3(-10, -3, 0));
 
     }
 
 
-    public Monster CreateNewMonster(MonsterConfig monsterConfig, Vector3 position)
+    public Monster CreateNewMonster(int ID, Vector3 position)
     {
+        MonsterConfig monsterConfig= MonsterManager.Instance.monsterConfigs[ID];
         // create a game object presenting monster
         GameObject newMonsterObj = Instantiate(m_MonsterPrefab, position, Quaternion.identity);
         Monster newMonster = newMonsterObj.GetComponent<Monster>();
