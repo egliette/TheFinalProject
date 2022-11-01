@@ -16,12 +16,15 @@ public class PlayerHealth : MonoBehaviour
     private bool m_Invincible = false;
     private bool m_IsDeath = false;
 
+    public GameObject m_gameOverCanvas;
+
     private void Start() 
     {
         m_CurrentHealth = m_StartingHealth;
         m_HealthBar.SetMaxHealth(m_StartingHealth);
         m_Sprite = GetComponent<SpriteRenderer>();
         m_Animator = GetComponent<Animator>();
+        m_gameOverCanvas.SetActive(false);
     }
 
 
@@ -75,8 +78,10 @@ public class PlayerHealth : MonoBehaviour
         m_HealthBar.SetHealth(0);
         m_Animator.SetTrigger("death");
         foreach (Behaviour component in m_Components)
-            component.enabled = false;  
+            component.enabled = false;
     }
+
+    
 
     private void OnTriggerStay2D(Collider2D collision) 
     {
