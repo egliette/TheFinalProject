@@ -1,37 +1,25 @@
 fileFormatVersion: 2
-guid: 348f34f451d70934cbbc3b483a93d8c9
+guid: e7911558761b8c14a80b3c27f4d31cff
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4824743347762680713
-    second: Healthbar
+      213: 5012578832364970027
+    second: player_speedup_0
   - first:
-      213: 2506628082882951015
-    second: InventoryBackground
+      213: -1917588041048925912
+    second: player_speedup_1
   - first:
-      213: 7028679605176687326
-    second: ItemSlot
+      213: -1579284507057340817
+    second: player_speedup_2
   - first:
-      213: -1921784270764113711
-    second: GUI_4x_3
+      213: -7012224951278082376
+    second: player_speedup_3
   - first:
-      213: -1758955909263869950
-    second: GUI_4x_4
+      213: 7093592485193090242
+    second: player_speedup_4
   - first:
-      213: 4651075968567485063
-    second: GUI_4x_5
-  - first:
-      213: 8536512838987739731
-    second: GUI_4x_6
-  - first:
-      213: -8197995511371906058
-    second: GUI_4x_7
-  - first:
-      213: 5182724834878707414
-    second: GUI_4x_8
-  - first:
-      213: -3283003759167633688
-    second: GUI_4x_9
+      213: 7127331854729568149
+    second: player_speedup_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -76,7 +64,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -145,211 +133,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Healthbar
+      name: player_speedup_0
       rect:
         serializedVersion: 2
-        x: 256
-        y: 76
-        width: 96
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 5, z: 10, w: 5}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77c2d20ec711b0db0800000000000000
-      internalID: -4824743347762680713
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: InventoryBackground
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 256
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 10, z: 10, w: 10}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 767b140f5f459c220800000000000000
-      internalID: 2506628082882951015
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemSlot
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 256
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 15, y: 15, z: 15, w: 15}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: edad6928cd2ea8160800000000000000
-      internalID: 7028679605176687326
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_4x_3
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 96
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 40, y: 40, z: 40, w: 40}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1d00c2643637455e0800000000000000
-      internalID: -1921784270764113711
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_4x_4
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 15, y: 15, z: 15, w: 15}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 208b0cc7beee697e0800000000000000
-      internalID: -1758955909263869950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_4x_5
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 352
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 30, y: 30, z: 30, w: 30}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78222d173f0fb8040800000000000000
-      internalID: 4651075968567485063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_4x_6
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 352
-        width: 96
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 15, y: 15, z: 15, w: 15}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 352fc6cd239c77670800000000000000
-      internalID: 8536512838987739731
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_4x_7
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 192
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 10, z: 10, w: 10}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f34e6a648eda3e80800000000000000
-      internalID: -8197995511371906058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_4x_8
-      rect:
-        serializedVersion: 2
-        x: 388
-        y: 196
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 10, y: 10, z: 10, w: 10}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d65a8f27ccbce740800000000000000
-      internalID: 5182724834878707414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: GUI_4x_9
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 232
-        width: 80
-        height: 80
+        x: 0
+        y: 60
+        width: 48
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
-      border: {x: 25, y: 25, z: 25, w: 25}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e68a82a97d6072d0800000000000000
-      internalID: -3283003759167633688
+      spriteID: b20a1c7e3e1409540800000000000000
+      internalID: 5012578832364970027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_speedup_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 60
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 829ddb326db5365e0800000000000000
+      internalID: -1917588041048925912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_speedup_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 30
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6eb195bb11451ae0800000000000000
+      internalID: -1579284507057340817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_speedup_3
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 30
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b660f52f829fae90800000000000000
+      internalID: -7012224951278082376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_speedup_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c4805528c0817260800000000000000
+      internalID: 7093592485193090242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_speedup_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f5b754f8e59e260800000000000000
+      internalID: 7127331854729568149
       vertices: []
       indices: 
       edges: []
