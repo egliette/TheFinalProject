@@ -151,7 +151,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   m_Animator: {fileID: 6691018947895576248}
-  m_HP: 10
+  m_HP: 20
 --- !u!61 &1288630815
 BoxCollider2D:
   m_ObjectHideFlags: 0

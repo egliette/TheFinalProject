@@ -20,21 +20,23 @@ public class Prop : MonoBehaviour
         m_CurrentHP = m_HP;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GameObject obj = collision.gameObject;
-        if (Utils.IsInLayerMask(obj, m_InteractiveLayerMask))
-        {
-            OnInteractiveUI();
-        }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    GameObject obj = collision.gameObject;
+    //    if (Utils.IsInLayerMask(obj, m_InteractiveLayerMask))
+    //    {
+    //        OnInteractiveUI();
+    //    }
 
-    }
+    //}
 
 
     public void TakeDamage(float amount)
     {
+        OnInteractiveUI();
+
         m_CurrentHP -= amount;
-        Debug.Log("prop take damage:" + m_CurrentHP);
+        //Debug.Log("Prop take damage: " + m_CurrentHP);
         if(m_CurrentHP <= 0)
 
         {

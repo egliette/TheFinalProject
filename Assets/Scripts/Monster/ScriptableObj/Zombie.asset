@@ -19,7 +19,7 @@ MonoBehaviour:
   speed: 8
   detectTargetRange: 5
   attackType: 1
-  attackRange: 3
+  attackRange: 5
   damage: 1
   attackRate: 1
   monsterAnimator: {fileID: 9100000, guid: 3f92058300a29ad49b0f76ca93daa49e, type: 2}

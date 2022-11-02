@@ -1,15 +1,18 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class MonsterBulletMovement : MonoBehaviour
 {
 
     private Vector3 m_TargetDirection;
     private bool m_Moving;
+    private bool m_Exploded;
 
 
 
     private Animator m_Animator;
-
 
     [SerializeField] private LayerMask m_InteractiveLayerMask;
     [SerializeField] private float m_BulletSpeed = 5f;
@@ -21,16 +24,18 @@ public class MonsterBulletMovement : MonoBehaviour
     private void Awake()
     {
         m_Moving = false;
+        m_Exploded = false;
         m_Animator = GetComponent<Animator>();
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(Utils.IsInLayerMask(collision.gameObject, m_InteractiveLayerMask))
+       
+        if (Utils.IsInLayerMask(collision.gameObject, m_InteractiveLayerMask))
         {
             Explode();
         }
     }
+
 
     private void FixedUpdate()
     {
@@ -46,29 +51,33 @@ public class MonsterBulletMovement : MonoBehaviour
 
     }
 
+   
+
     private void Explode()
     {
-        OnExplosionUI();
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_BulletExplodeRange, m_DealDamageLayerMask);
-        foreach (Collider2D hit in hitColliders)
+        if (!m_Exploded)
         {
-            // hit player
-            PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
-            if (playerHealth)
+            OnExplosionUI();
+            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_BulletExplodeRange, m_DealDamageLayerMask);
+            foreach (Collider2D hit in hitColliders)
             {
-                Debug.Log("Player take damage: " + m_Damage);
-                playerHealth.TakeDamage((int)m_Damage);
-            }
+                // hit player
+                PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
+                if (playerHealth)
+                {
+                    playerHealth.TakeDamage((int)m_Damage);
+                }
 
-            // hit props
-            Prop prop = hit.GetComponent<Prop>();
-            if (prop)
-            {
-                Debug.Log("Prop take damage: " + m_Damage);
-                prop.TakeDamage((int)m_Damage);
+                // hit props
+                Prop prop = hit.GetComponent<Prop>();
+                if (prop)
+                {
+                    prop.TakeDamage((int)m_Damage);
+                }
             }
+            m_Moving = false;
+            m_Exploded = true;
         }
-        m_Moving = false;
     }
 
 
@@ -82,6 +91,7 @@ public class MonsterBulletMovement : MonoBehaviour
     {
         gameObject.SetActive(false);
         m_Animator.SetBool("explode", false);
+        m_Exploded = false;
 
     }
 
