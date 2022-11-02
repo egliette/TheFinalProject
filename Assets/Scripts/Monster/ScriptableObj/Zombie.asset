@@ -17,7 +17,7 @@ MonoBehaviour:
   health: 10
   movementType: 0
   speed: 8
-  detectTargetRange: 5
+  detectTargetRange: 8
   attackType: 1
   attackRange: 5
   damage: 1
