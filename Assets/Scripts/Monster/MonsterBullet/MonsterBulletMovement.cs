@@ -14,7 +14,7 @@ public class MonsterBulletMovement : MonoBehaviour
     [SerializeField] private LayerMask m_InteractiveLayerMask;
     [SerializeField] private float m_BulletSpeed = 5f;
     [SerializeField] private float m_BulletExplodeRange = 1f;
-    [SerializeField] private LayerMask m_PlayerLayerMask;
+    [SerializeField] private LayerMask m_DealDamageLayerMask;
     [SerializeField] private float m_Damage = 1f;
 
 
@@ -49,14 +49,23 @@ public class MonsterBulletMovement : MonoBehaviour
     private void Explode()
     {
         OnExplosionUI();
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_BulletExplodeRange, m_PlayerLayerMask);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_BulletExplodeRange, m_DealDamageLayerMask);
         foreach (Collider2D hit in hitColliders)
         {
+            // hit player
             PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
             if (playerHealth)
             {
                 Debug.Log("Player take damage: " + m_Damage);
                 playerHealth.TakeDamage((int)m_Damage);
+            }
+
+            // hit props
+            Prop prop = hit.GetComponent<Prop>();
+            if (prop)
+            {
+                Debug.Log("Prop take damage: " + m_Damage);
+                prop.TakeDamage((int)m_Damage);
             }
         }
         m_Moving = false;

@@ -24,9 +24,7 @@ public class MonsterManager : MonoBehaviour
         m_ActiveMonsters = new List<Monster>();
         m_MonsterAssets = new MonsterAssetsPath();
         CreateNewMonster(0, new Vector3(-10, 0, 0));
-        CreateNewMonster(0, new Vector3(-10, 4, 0));
-        CreateNewMonster(0, new Vector3(-10, 10, 0));
-        CreateNewMonster(0, new Vector3(-10, -3, 0));
+       
 
     }
 

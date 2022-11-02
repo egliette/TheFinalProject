@@ -166,10 +166,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractiveLayerMask:
     serializedVersion: 2
-    m_Bits: 584
+    m_Bits: 72
   m_BulletSpeed: 10
   m_BulletExplodeRange: 1
-  m_PlayerLayerMask:
+  m_DealDamageLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 520
   m_Damage: 10

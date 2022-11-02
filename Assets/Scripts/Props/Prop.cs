@@ -31,10 +31,12 @@ public class Prop : MonoBehaviour
     }
 
 
-    private void TakeDamage(float amount)
+    public void TakeDamage(float amount)
     {
         m_CurrentHP -= amount;
+        Debug.Log("prop take damage:" + m_CurrentHP);
         if(m_CurrentHP <= 0)
+
         {
             OnDestroyUI();
             m_PropAction.DoAction();
