@@ -1,18 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MonsterBulletMovement : MonoBehaviour
 {
-    private Vector3 m_TargetPosition;
+
+    private Vector3 m_TargetDirection;
     private bool m_Moving;
+
 
 
     private Animator m_Animator;
 
 
-
+    [SerializeField] private LayerMask m_InteractiveLayerMask;
     [SerializeField] private float m_BulletSpeed = 5f;
     [SerializeField] private float m_BulletExplodeRange = 1f;
     [SerializeField] private LayerMask m_PlayerLayerMask;
@@ -25,21 +24,26 @@ public class MonsterBulletMovement : MonoBehaviour
         m_Animator = GetComponent<Animator>();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(Utils.IsInLayerMask(collision.gameObject, m_InteractiveLayerMask))
+        {
+            Explode();
+        }
+    }
+
     private void FixedUpdate()
     {
         if(m_Moving)
         {
-            if(Vector3.Distance(transform.position, m_TargetPosition) > 0.1f)
-            {
-                float step = m_BulletSpeed * Time.deltaTime;
-                transform.position = Vector3.MoveTowards(transform.position, m_TargetPosition, step);
-            }
-            else
-            {
-                Explode();
-            }
+            Vector3 newPosition = transform.position;
+            newPosition.x += m_TargetDirection.x * m_BulletSpeed * Time.deltaTime;
+            newPosition.y += m_TargetDirection.y * m_BulletSpeed * Time.deltaTime;
+
+            transform.position = newPosition;
+
         }
-       
+
     }
 
     private void Explode()
@@ -51,9 +55,11 @@ public class MonsterBulletMovement : MonoBehaviour
             PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
             if (playerHealth)
             {
+                Debug.Log("Player take damage: " + m_Damage);
                 playerHealth.TakeDamage((int)m_Damage);
             }
         }
+        m_Moving = false;
     }
 
 
@@ -71,10 +77,13 @@ public class MonsterBulletMovement : MonoBehaviour
     }
 
 
-    public void SetTargetPosition(Vector3 targetPosition)
+    public void SetTargetDirection(Vector3 targetDirection)
     {
-        m_TargetPosition = targetPosition;
-        m_Moving = true;
+        if (!m_Moving)
+        {
+            m_TargetDirection = targetDirection;
+            m_TargetDirection.Normalize();
+            m_Moving = true;
+        }
     }
-
 }

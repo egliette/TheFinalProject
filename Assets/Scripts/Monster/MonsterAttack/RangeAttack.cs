@@ -25,11 +25,11 @@ public class RangeAttack : IMonsterAttack
         GameObject bullet = ObjectPooler.Instance.SpawnFromPool(bulletTag, position, rotation);
 
         // get target position
-        Vector3 targetPosition = target.gameObject.transform.position;
+        Vector3 targetDirection = target.gameObject.transform.position - m_MonsterAttack.transform.position;
         MonsterBulletMovement bulletMovement = bullet.GetComponent<MonsterBulletMovement>();
         if (bulletMovement)
         {
-            bulletMovement.SetTargetPosition(targetPosition);
+            bulletMovement.SetTargetDirection(targetDirection);
         }
         
 

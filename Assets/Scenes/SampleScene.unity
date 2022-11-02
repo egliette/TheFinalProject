@@ -7661,7 +7661,7 @@ MonoBehaviour:
   pools:
   - tag: ZombieBullet
     prefab: {fileID: 4307136499554266653, guid: bfe07f5f846188648af4d62444e70607, type: 3}
-    size: 3
+    size: 100
 --- !u!4 &631146485
 Transform:
   m_ObjectHideFlags: 0
@@ -12157,7 +12157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1269625916 stripped
 GameObject:
@@ -90022,11 +90022,11 @@ PrefabInstance:
       objectReference: {fileID: 1797164064}
     - target: {fileID: 6509132546810881047, guid: cf93e602dd3d45f42b4dd4e45badb02a, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6509132546810881047, guid: cf93e602dd3d45f42b4dd4e45badb02a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.4
+      value: -20.19
       objectReference: {fileID: 0}
     - target: {fileID: 6509132546810881047, guid: cf93e602dd3d45f42b4dd4e45badb02a, type: 3}
       propertyPath: m_LocalPosition.y

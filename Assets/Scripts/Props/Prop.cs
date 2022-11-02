@@ -30,14 +30,6 @@ public class Prop : MonoBehaviour
 
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        GameObject obj = collision.gameObject;
-        if (Utils.IsInLayerMask(obj, m_InteractiveLayerMask))
-        {
-            OnIdleUI();
-        }
-    }
 
     private void TakeDamage(float amount)
     {

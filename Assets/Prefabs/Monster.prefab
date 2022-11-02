@@ -152,7 +152,6 @@ MonoBehaviour:
   m_MonsterMovement: {fileID: 342288834990566402}
   m_MonsterHealth: {fileID: 342288834990566403}
   m_MonsterAttack: {fileID: 342288834990566400}
-  m_CurrentStatus: 0
 --- !u!114 &342288834990566402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +167,7 @@ MonoBehaviour:
   m_Monster: {fileID: 342288834990566413}
   m_BlockLayerMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 712
   m_BoxCollider: {fileID: 342288834990566401}
 --- !u!114 &342288834990566403
 MonoBehaviour:
