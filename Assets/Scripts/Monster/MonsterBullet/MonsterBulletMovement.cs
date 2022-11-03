@@ -93,7 +93,7 @@ public class MonsterBulletMovement : MonoBehaviour
         gameObject.SetActive(false);
         m_Animator.SetBool("explode", false);
         m_Exploded = false;
-
+        m_Moving = false;
     }
 
 
@@ -106,4 +106,6 @@ public class MonsterBulletMovement : MonoBehaviour
             m_Moving = true;
         }
     }
+
+    
 }

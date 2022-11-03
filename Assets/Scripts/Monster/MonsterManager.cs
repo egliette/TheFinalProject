@@ -5,9 +5,10 @@ using UnityEngine;
 public class MonsterManager : MonoBehaviour
 {
     [SerializeField] private List<Monster> m_ActiveMonsters;
-        
-    [SerializeField] private GameObject m_MonsterPrefab;
-    [SerializeField] private MonsterConfig[] monsterConfigs;
+    [SerializeField] private MonsterConfig[] m_MonsterConfigs;
+    [SerializeField] private MonsterWaveConfig[] m_MonsterWaveConfigs;
+
+    private float m_SpawnTimeInterval = 2f;
 
     public MonsterAssetsPath m_MonsterAssets;
 
@@ -28,20 +29,18 @@ public class MonsterManager : MonoBehaviour
     }
 
 
-    public Monster CreateNewMonster(int ID, Vector3 position)
+    public void CreateNewMonster(int ID, Vector3 position)
     {
-        MonsterConfig monsterConfig= MonsterManager.Instance.monsterConfigs[ID];
+        MonsterConfig monsterConfig= m_MonsterConfigs[ID];
         // create a game object presenting monster
         GameObject newMonsterObj = ObjectPooler.Instance.SpawnFromPool(monsterConfig.monsterName, position, Quaternion.identity);
-        //GameObject newMonsterObj = Instantiate(m_MonsterPrefab, position, Quaternion.identity);
-        Monster newMonster = newMonsterObj.GetComponent<Monster>();
+        //Monster newMonster = newMonsterObj.GetComponent<Monster>();
         
 
 
         // Change sprite, animation and intialize config depend on monster type
-        newMonster.ConfigMonsterData(monsterConfig);
+        //newMonster.ConfigMonsterData(monsterConfig);
 
-        return newMonster;
     }
 
 
@@ -61,6 +60,51 @@ public class MonsterManager : MonoBehaviour
     {
         return m_ActiveMonsters.Count == 0;
     }
+
+    public void SpawnNewMonsterWave(int stageID, float waitTime)
+    {
+        StartCoroutine(CreateMonsterWave(stageID, waitTime));
+
+    }
+
+
+    private IEnumerator CreateMonsterWave(int stageID, float waitTime)
+    {
+        Debug.Log("CreateMonsterWave");
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("After " + waitTime);
+
+        MonsterWaveConfig config = m_MonsterWaveConfigs[stageID];
+        
+        // spawn monster every m_SpawnTimeInterval seconds
+        for (int i = 0; i< config.TotalNormalMonster; ++i)
+        {
+            Debug.Log("spawn normal");
+            CreateNewMonster(0, config.SpawnPosition);
+            yield return new WaitForSeconds(m_SpawnTimeInterval);
+
+        }
+
+        for (int i = 0; i < config.TotalRangeMonster; ++i)
+        {
+            Debug.Log("spawn range");
+            CreateNewMonster(1, config.SpawnPosition);
+            yield return new WaitForSeconds(m_SpawnTimeInterval);
+
+        }
+
+        for (int i = 0; i < config.TotalExplodeMonster; ++i)
+        {
+            Debug.Log("spawn explode");
+            CreateNewMonster(2, config.SpawnPosition);
+            yield return new WaitForSeconds(m_SpawnTimeInterval);
+
+        }
+        yield return null;
+
+    }
+
+
 
 
     #region Getter setter

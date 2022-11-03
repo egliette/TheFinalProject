@@ -73,11 +73,7 @@ public class MonsterMovement : MonoBehaviour
                     m_BoxCollider.enabled = false;
                     return;
                 }
-            case Enums.MonsterBehavior.DO_NOTHING:
-                {
-                    m_Monster.OnIdleUI();
-                    return;
-                }
+           
             default:
                 {
                     return;
