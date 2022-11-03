@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Terrain
   - Enemy
+  - Bullet
+  - Grenade
+  - Medkit
+  - EnergyDrink
+  - Resource
   layers:
   - Default
   - TransparentFX
@@ -18,7 +23,7 @@ TagManager:
   - Traps
   - Props
   - Bullet
-  - 
+  - Item
   - 
   - 
   - 

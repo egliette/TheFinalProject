@@ -6,8 +6,8 @@ using UnityEngine;
 public class ExplodeProp : IPropAction
 {
     private Prop m_Prop;
-    private float m_ExplodeRange = 3f;
-    private float m_Damage = 20f;
+    private float m_ExplodeRange = 2f;
+    private float m_Damage = 5f;
 
     public ExplodeProp(Prop prop)
     {
