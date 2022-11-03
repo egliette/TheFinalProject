@@ -23,3 +23,5 @@ MonoBehaviour:
   damage: 9
   attackRate: 0
   monsterAnimator: {fileID: 9100000, guid: d890cc46fe2e7994a83649eb9424381b, type: 2}
+  attackSound: {fileID: 0}
+  deadSound: {fileID: 8300000, guid: 240177a9539c9e34092e061117fe11dc, type: 3}

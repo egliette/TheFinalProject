@@ -10,7 +10,8 @@ public class Prop : MonoBehaviour
     [SerializeField] private LayerMask m_InteractiveLayerMask;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private float m_HP;
-    [SerializeField] private Collider2D m_Collider2D;
+    [SerializeField] private AudioSource m_AudioSource;
+
 
     private float m_CurrentHP;
     private IPropAction m_PropAction;
@@ -82,6 +83,8 @@ public class Prop : MonoBehaviour
 
     private void OnDestroyUI()
     {
+        m_AudioSource.Play();
+
         m_Animator.SetBool("OnInteract", false);
         m_Animator.SetBool("OnDestroy", true);
     }
@@ -103,10 +106,7 @@ public class Prop : MonoBehaviour
         return m_DealDamageToLayerMask;
     }
 
-    public Collider2D GetCollider()
-    {
-        return m_Collider2D;
-    }
+   
 
     #endregion
 }

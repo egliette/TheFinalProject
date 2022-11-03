@@ -22,5 +22,8 @@ public class MonsterConfig : ScriptableObject
     public float damage;
     public float attackRate;
 
+    // UI
     public RuntimeAnimatorController monsterAnimator;
+    public AudioClip attackSound;
+    public AudioClip deadSound;
 }

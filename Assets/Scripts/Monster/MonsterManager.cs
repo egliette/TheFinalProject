@@ -8,7 +8,6 @@ public class MonsterManager : MonoBehaviour
     [SerializeField] private MonsterConfig[] m_MonsterConfigs;
     [SerializeField] private MonsterWaveConfig[] m_MonsterWaveConfigs;
 
-    private float m_SpawnTimeInterval = 2f;
 
     public MonsterAssetsPath m_MonsterAssets;
 
@@ -80,21 +79,21 @@ public class MonsterManager : MonoBehaviour
         for (int i = 0; i< config.TotalNormalMonster; ++i)
         {
             CreateNewMonster(0, config.SpawnPosition).SetDetecTargetRange(50);
-            yield return new WaitForSeconds(m_SpawnTimeInterval);
+            yield return new WaitForSeconds(config.SpawnTimeInterval);
 
         }
 
         for (int i = 0; i < config.TotalRangeMonster; ++i)
         {
             CreateNewMonster(1, config.SpawnPosition).SetDetecTargetRange(50);
-            yield return new WaitForSeconds(m_SpawnTimeInterval);
+            yield return new WaitForSeconds(config.SpawnTimeInterval);
 
         }
 
         for (int i = 0; i < config.TotalExplodeMonster; ++i)
         {
             CreateNewMonster(2, config.SpawnPosition).SetDetecTargetRange(50);
-            yield return new WaitForSeconds(m_SpawnTimeInterval);
+            yield return new WaitForSeconds(config.SpawnTimeInterval);
 
         }
         yield return null;
