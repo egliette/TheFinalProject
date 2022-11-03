@@ -9,7 +9,10 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private LayerMask m_BlockLayerMask;
     [SerializeField] private BoxCollider2D m_BoxCollider;
     private float m_Speed;
+    private float m_AttackRange;
 
+
+    
     private MonsterMoving m_MovingMethod;
 
 
@@ -52,11 +55,11 @@ public class MonsterMovement : MonoBehaviour
 
                     // get distance to current target
                     float distanceToTarget = Vector3.Distance(m_Monster.transform.position, m_Monster.GetTarget().transform.position);
-                    if (distanceToTarget <= m_Monster.GetMonsterConfig().attackRange)
+                    if (distanceToTarget <= m_AttackRange)
                     {
                         m_Monster.SetCurrentStatus(Enums.MonsterBehavior.ATTACK);
                     }
-                    else if (distanceToTarget <= m_Monster.GetMonsterConfig().detectTargetRange)
+                    else if (distanceToTarget <= m_Monster.GetDetectTargetRange())
                     {
                         m_Monster.SetCurrentStatus(Enums.MonsterBehavior.APPROACH_FOR_TARGET);
                     }
@@ -91,7 +94,7 @@ public class MonsterMovement : MonoBehaviour
     public void ConfigMonsterData(MonsterConfig config)
     {
         m_Speed = config.speed;
-
+        m_AttackRange = config.attackRange;
         m_MovingMethod = GetMovingMethod(config);
         // Later for further develop
 
@@ -120,7 +123,7 @@ public class MonsterMovement : MonoBehaviour
 
     private void DetectTarget()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(m_Monster.transform.position, m_Monster.GetMonsterConfig().detectTargetRange, m_Monster.GetPlayerMask());
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(m_Monster.transform.position, m_Monster.GetDetectTargetRange(), m_Monster.GetPlayerMask());
         // if detect no target, return false
         if (hitColliders.Length == 0)
         {

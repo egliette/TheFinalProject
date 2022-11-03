@@ -91164,11 +91164,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6509132546810881047, guid: cf93e602dd3d45f42b4dd4e45badb02a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6
+      value: 21.4
       objectReference: {fileID: 0}
     - target: {fileID: 6509132546810881047, guid: cf93e602dd3d45f42b4dd4e45badb02a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.09
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6509132546810881047, guid: cf93e602dd3d45f42b4dd4e45badb02a, type: 3}
       propertyPath: m_LocalPosition.z

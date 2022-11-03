@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: 
   SpawnPosition: {x: -10, y: 0, z: 0}
-  TotalNormalMonster: 2
-  TotalRangeMonster: 2
-  TotalExplodeMonster: 1
+  TotalNormalMonster: 5
+  TotalRangeMonster: 5
+  TotalExplodeMonster: 3

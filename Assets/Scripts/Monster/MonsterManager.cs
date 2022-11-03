@@ -25,21 +25,22 @@ public class MonsterManager : MonoBehaviour
 
     void Start()
     {
-
     }
 
 
-    public void CreateNewMonster(int ID, Vector3 position)
+    public Monster CreateNewMonster(int ID, Vector3 position)
     {
         MonsterConfig monsterConfig= m_MonsterConfigs[ID];
         // create a game object presenting monster
         GameObject newMonsterObj = ObjectPooler.Instance.SpawnFromPool(monsterConfig.monsterName, position, Quaternion.identity);
         //Monster newMonster = newMonsterObj.GetComponent<Monster>();
-        
+
 
 
         // Change sprite, animation and intialize config depend on monster type
         //newMonster.ConfigMonsterData(monsterConfig);
+
+        return newMonsterObj.GetComponent<Monster>();
 
     }
 
@@ -70,7 +71,6 @@ public class MonsterManager : MonoBehaviour
 
     private IEnumerator CreateMonsterWave(int stageID, float waitTime)
     {
-        Debug.Log("CreateMonsterWave");
         yield return new WaitForSeconds(waitTime);
         Debug.Log("After " + waitTime);
 
@@ -79,24 +79,21 @@ public class MonsterManager : MonoBehaviour
         // spawn monster every m_SpawnTimeInterval seconds
         for (int i = 0; i< config.TotalNormalMonster; ++i)
         {
-            Debug.Log("spawn normal");
-            CreateNewMonster(0, config.SpawnPosition);
+            CreateNewMonster(0, config.SpawnPosition).SetDetecTargetRange(50);
             yield return new WaitForSeconds(m_SpawnTimeInterval);
 
         }
 
         for (int i = 0; i < config.TotalRangeMonster; ++i)
         {
-            Debug.Log("spawn range");
-            CreateNewMonster(1, config.SpawnPosition);
+            CreateNewMonster(1, config.SpawnPosition).SetDetecTargetRange(50);
             yield return new WaitForSeconds(m_SpawnTimeInterval);
 
         }
 
         for (int i = 0; i < config.TotalExplodeMonster; ++i)
         {
-            Debug.Log("spawn explode");
-            CreateNewMonster(2, config.SpawnPosition);
+            CreateNewMonster(2, config.SpawnPosition).SetDetecTargetRange(50);
             yield return new WaitForSeconds(m_SpawnTimeInterval);
 
         }
