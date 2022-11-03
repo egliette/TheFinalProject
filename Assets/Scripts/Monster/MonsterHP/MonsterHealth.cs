@@ -21,6 +21,7 @@ public class MonsterHealth : MonoBehaviour
 
     private void OnDeath()
     {
+        MonsterManager.Instance.RemoveMonster(m_Monster);
         m_Monster.OnDeadUI();
         m_Monster.SetCurrentStatus(Enums.MonsterBehavior.DEAD);
     }

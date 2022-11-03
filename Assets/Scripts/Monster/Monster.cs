@@ -35,6 +35,10 @@ public partial class Monster : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        MonsterManager.Instance.AddMonster(this);
+    }
 
     private void FixedUpdate()
     {

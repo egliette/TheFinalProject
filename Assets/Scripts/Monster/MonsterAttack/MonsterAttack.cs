@@ -109,6 +109,11 @@ public class MonsterAttack : MonoBehaviour
 
 
     #region Getter setter
+    public Monster GetMonster()
+    {
+        return m_Monster;
+    }
+
     public float GetAttackRange()
     {
         return m_AttackRange;

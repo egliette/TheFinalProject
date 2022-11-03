@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6691018947895576248}
   - component: {fileID: 6691018947895576249}
   - component: {fileID: 6691018947895576250}
-  - component: {fileID: 1288630815}
   m_Layer: 9
   m_Name: GasTank
   m_TagString: Untagged
@@ -115,10 +114,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.016348839, y: -0.0044427216}
+  m_Offset: {x: 0.017447472, y: -0.45924714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,7 +128,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0402374, y: 1.6081197}
+  m_Size: {x: 1.0380402, y: 0.6985108}
   m_EdgeRadius: 0
 --- !u!114 &6691018947895576250
 MonoBehaviour:
@@ -152,29 +151,4 @@ MonoBehaviour:
     m_Bits: 1024
   m_Animator: {fileID: 6691018947895576248}
   m_HP: 10
---- !u!61 &1288630815
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6691018947895576251}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.01758957, y: -0.007514596}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.0520573, y: 1.6132662}
-  m_EdgeRadius: 0
+  m_Collider2D: {fileID: 0}

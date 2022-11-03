@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour
 {
-    private List<Monster> m_ActiveMonsters;
+    [SerializeField] private List<Monster> m_ActiveMonsters;
         
     [SerializeField] private GameObject m_MonsterPrefab;
     [SerializeField] private MonsterConfig[] monsterConfigs;
@@ -16,15 +16,14 @@ public class MonsterManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        m_ActiveMonsters = new List<Monster>();
+        m_MonsterAssets = new MonsterAssetsPath();
+
     }
     #endregion
 
     void Start()
     {
-        m_ActiveMonsters = new List<Monster>();
-        m_MonsterAssets = new MonsterAssetsPath();
-        CreateNewMonster(0, new Vector3(-10, 0, 0));
-       
 
     }
 
@@ -33,28 +32,44 @@ public class MonsterManager : MonoBehaviour
     {
         MonsterConfig monsterConfig= MonsterManager.Instance.monsterConfigs[ID];
         // create a game object presenting monster
-        GameObject newMonsterObj = Instantiate(m_MonsterPrefab, position, Quaternion.identity);
+        GameObject newMonsterObj = ObjectPooler.Instance.SpawnFromPool(monsterConfig.monsterName, position, Quaternion.identity);
+        //GameObject newMonsterObj = Instantiate(m_MonsterPrefab, position, Quaternion.identity);
         Monster newMonster = newMonsterObj.GetComponent<Monster>();
+        
+
 
         // Change sprite, animation and intialize config depend on monster type
         newMonster.ConfigMonsterData(monsterConfig);
 
-        // add to manager's active list
-        m_ActiveMonsters.Add(newMonster);
         return newMonster;
     }
 
-    public bool RemoveMonster(Monster monsterToRemove)
+
+    public void AddMonster(Monster newMonster)
     {
-        foreach(Monster monster in m_ActiveMonsters) { 
-            if(monster.GetMonsterConfig().monsterID == monsterToRemove.GetMonsterConfig().monsterID)
-            {
-                m_ActiveMonsters.Remove(monster);
-                return true;
-            }
-        }
-        
-        return false;
+        m_ActiveMonsters.Add(newMonster);
     }
+
+    public Monster RemoveMonster(Monster monsterToRemove)
+    {
+        m_ActiveMonsters.Remove(monsterToRemove);
+        return monsterToRemove;
+    }
+
+
+    public bool NoMonsterLeft()
+    {
+        return m_ActiveMonsters.Count == 0;
+    }
+
+
+    #region Getter setter
+    public List<Monster> GetMonsterList()
+    {
+        return m_ActiveMonsters;
+    }
+
+
+    #endregion
 
 }
