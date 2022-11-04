@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour
 {
-    private List<Monster> m_ActiveMonsters;
-        
-    [SerializeField] private GameObject m_MonsterPrefab;
-    [SerializeField] private MonsterConfig[] monsterConfigs;
+    [SerializeField] private List<Monster> m_ActiveMonsters;
+    [SerializeField] private MonsterConfig[] m_MonsterConfigs;
+    [SerializeField] private MonsterWaveConfig[] m_MonsterWaveConfigs;
+
 
     public MonsterAssetsPath m_MonsterAssets;
 
@@ -16,45 +16,100 @@ public class MonsterManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        m_ActiveMonsters = new List<Monster>();
+        m_MonsterAssets = new MonsterAssetsPath();
+
     }
     #endregion
 
     void Start()
     {
-        m_ActiveMonsters = new List<Monster>();
-        m_MonsterAssets = new MonsterAssetsPath();
-        CreateNewMonster(0, new Vector3(-10, 0, 0));
-       
-
     }
 
 
     public Monster CreateNewMonster(int ID, Vector3 position)
     {
-        MonsterConfig monsterConfig= MonsterManager.Instance.monsterConfigs[ID];
+        MonsterConfig monsterConfig= m_MonsterConfigs[ID];
         // create a game object presenting monster
-        GameObject newMonsterObj = Instantiate(m_MonsterPrefab, position, Quaternion.identity);
-        Monster newMonster = newMonsterObj.GetComponent<Monster>();
+        GameObject newMonsterObj = ObjectPooler.Instance.SpawnFromPool(monsterConfig.monsterName, position, Quaternion.identity);
+        //Monster newMonster = newMonsterObj.GetComponent<Monster>();
+
+
 
         // Change sprite, animation and intialize config depend on monster type
-        newMonster.ConfigMonsterData(monsterConfig);
+        //newMonster.ConfigMonsterData(monsterConfig);
 
-        // add to manager's active list
-        m_ActiveMonsters.Add(newMonster);
-        return newMonster;
+        return newMonsterObj.GetComponent<Monster>();
+
     }
 
-    public bool RemoveMonster(Monster monsterToRemove)
+
+    public void AddMonster(Monster newMonster)
     {
-        foreach(Monster monster in m_ActiveMonsters) { 
-            if(monster.GetMonsterConfig().monsterID == monsterToRemove.GetMonsterConfig().monsterID)
-            {
-                m_ActiveMonsters.Remove(monster);
-                return true;
-            }
-        }
-        
-        return false;
+        m_ActiveMonsters.Add(newMonster);
     }
+
+    public Monster RemoveMonster(Monster monsterToRemove)
+    {
+        m_ActiveMonsters.Remove(monsterToRemove);
+        return monsterToRemove;
+    }
+
+
+    public bool NoMonsterLeft()
+    {
+        return m_ActiveMonsters.Count == 0;
+    }
+
+    public void SpawnNewMonsterWave(int stageID, float waitTime)
+    {
+        StartCoroutine(CreateMonsterWave(stageID, waitTime));
+
+    }
+
+
+    private IEnumerator CreateMonsterWave(int stageID, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("After " + waitTime);
+
+        MonsterWaveConfig config = m_MonsterWaveConfigs[stageID];
+        
+        // spawn monster every m_SpawnTimeInterval seconds
+        for (int i = 0; i< config.TotalNormalMonster; ++i)
+        {
+            CreateNewMonster(0, config.SpawnPosition).SetDetecTargetRange(50);
+            yield return new WaitForSeconds(config.SpawnTimeInterval);
+
+        }
+
+        for (int i = 0; i < config.TotalRangeMonster; ++i)
+        {
+            CreateNewMonster(1, config.SpawnPosition).SetDetecTargetRange(50);
+            yield return new WaitForSeconds(config.SpawnTimeInterval);
+
+        }
+
+        for (int i = 0; i < config.TotalExplodeMonster; ++i)
+        {
+            CreateNewMonster(2, config.SpawnPosition).SetDetecTargetRange(50);
+            yield return new WaitForSeconds(config.SpawnTimeInterval);
+
+        }
+        yield return null;
+
+    }
+
+
+
+
+    #region Getter setter
+    public List<Monster> GetMonsterList()
+    {
+        return m_ActiveMonsters;
+    }
+
+
+    #endregion
 
 }

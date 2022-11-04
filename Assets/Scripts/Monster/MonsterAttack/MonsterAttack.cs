@@ -46,14 +46,14 @@ public class MonsterAttack : MonoBehaviour
             // Distance to current target
             float distanceToTarget = Vector3.Distance(m_Monster.transform.position, m_Monster.GetTarget().transform.position);
             // if not in attack range
-            if (distanceToTarget > m_Monster.GetMonsterConfig().attackRange)
+            if (distanceToTarget > m_AttackRange)
             {
 
                 // if finished attack anim then ...
                 if (!m_OnAttack)
                 {
                     // if in detect range, switch to APPROACH_FOR_TARGET status
-                    if (distanceToTarget <= m_Monster.GetMonsterConfig().detectTargetRange)
+                    if (distanceToTarget <= m_Monster.GetDetectTargetRange())
                     {
                         m_Monster.SetCurrentStatus(Enums.MonsterBehavior.APPROACH_FOR_TARGET);
                     }
@@ -109,6 +109,11 @@ public class MonsterAttack : MonoBehaviour
 
 
     #region Getter setter
+    public Monster GetMonster()
+    {
+        return m_Monster;
+    }
+
     public float GetAttackRange()
     {
         return m_AttackRange;

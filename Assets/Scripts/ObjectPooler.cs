@@ -11,21 +11,17 @@ public class ObjectPooler : MonoBehaviour
         public GameObject prefab;
         public int size;
     }
-    #region Singleton
 
     public static ObjectPooler Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
-
-    #endregion
+  
 
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
-    private void Start()
+    private void Awake()
     {
+        Instance = this;
+
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
         foreach(Pool pool in pools)

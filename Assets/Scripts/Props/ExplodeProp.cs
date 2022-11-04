@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,26 +16,59 @@ public class ExplodeProp : IPropAction
     }
     public void DoAction()
     {
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(m_Prop.transform.position, m_ExplodeRange, m_Prop.GetDeadlDamageLayerMask());
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(m_Prop.transform.position, m_ExplodeRange, m_Prop.GetDealDamageLayerMask());
         foreach (Collider2D hit in hitColliders)
         {
-            PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
+            // deal damage to player
+            PlayerHealth playerHealth = hit.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth)
             {
                 playerHealth.TakeDamage((int)m_Damage);
             }
-
-            MonsterHealth monsterHealth = hit.GetComponent<MonsterHealth>();
+            // deal damage to monster
+            MonsterHealth monsterHealth = hit.gameObject.GetComponent<MonsterHealth>();
             if (monsterHealth)
             {
                 monsterHealth.TakeDamage((int)m_Damage);
             }
-
             KnockBack(hit.gameObject);
         }
 
 
+        // get list of object that have the same tag of this object
+        List<Prop> props = GetPropListNearBy(m_Prop.transform.position, m_ExplodeRange);
+        foreach (Prop prop in props)
+        {
+            prop.TakeDamage(100);
+        }
+
+
     }
+
+
+    private List<Prop> GetPropListNearBy(Vector3 position, float range)
+    {
+        //List<Collider2D> nearBy = Physics2D.OverlapCircleAll(position, range, layerMask).ToList();
+
+        List<Prop> nearBy = PropManager.Instance.GetActiveProps();
+        List<Prop> res = new List<Prop>();
+        foreach(Prop prop in nearBy)
+        {
+            if(prop == m_Prop)
+            {
+                continue;
+            }
+            
+            if(Vector3.Distance(m_Prop.transform.position, prop.transform.position) <= range)
+            {
+                res.Add(prop);
+            }
+        }
+
+      
+        return res;
+    }
+
 
     private void KnockBack(GameObject target)
     {

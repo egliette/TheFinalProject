@@ -12,6 +12,7 @@ public partial class Monster : MonoBehaviour
 
 
     private GameObject m_Target;
+    private float m_DetectTargetRange;
 
 
     // define monster states
@@ -29,12 +30,17 @@ public partial class Monster : MonoBehaviour
 
         m_Animator = GetComponent<Animator>();
 
-        if(m_MonsterConfig != null)
+
+        if (m_MonsterConfig != null)
         {
             ConfigMonsterData(m_MonsterConfig);
         }
     }
 
+    private void Start()
+    {
+        MonsterManager.Instance.AddMonster(this);
+    }
 
     private void FixedUpdate()
     {
@@ -84,7 +90,7 @@ public partial class Monster : MonoBehaviour
     {
         // set config for later use
         m_MonsterConfig = config;
-        
+        m_DetectTargetRange = config.detectTargetRange;
         // set animator controller
         m_Animator.runtimeAnimatorController = config.monsterAnimator;
 
@@ -138,6 +144,16 @@ public partial class Monster : MonoBehaviour
     public void SetCurrentStatus(Enums.MonsterBehavior status)
     {
         m_CurrentStatus = status;
+    }
+
+    public float GetDetectTargetRange()
+    {
+        return m_DetectTargetRange;
+    }
+
+    public void SetDetecTargetRange(float value)
+    {
+        m_DetectTargetRange = value;
     }
 
     #endregion

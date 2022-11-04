@@ -10,25 +10,21 @@ public class Prop : MonoBehaviour
     [SerializeField] private LayerMask m_InteractiveLayerMask;
     [SerializeField] private Animator m_Animator;
     [SerializeField] private float m_HP;
-    
+    [SerializeField] private AudioSource m_AudioSource;
+
+
     private float m_CurrentHP;
     private IPropAction m_PropAction;
 
     private void Start()
     {
+        PropManager.Instance.AddNewProp(this);
+
         GetNewPropAction();
         m_CurrentHP = m_HP;
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    GameObject obj = collision.gameObject;
-    //    if (Utils.IsInLayerMask(obj, m_InteractiveLayerMask))
-    //    {
-    //        OnInteractiveUI();
-    //    }
 
-    //}
 
 
     public void TakeDamage(float amount)
@@ -36,12 +32,10 @@ public class Prop : MonoBehaviour
         OnInteractiveUI();
 
         m_CurrentHP -= amount;
-        //Debug.Log("Prop take damage: " + m_CurrentHP);
         if(m_CurrentHP <= 0)
-
         {
+            PropManager.Instance.RemoveProp(this);
             OnDestroyUI();
-            m_PropAction.DoAction();
         }
     }
 
@@ -49,6 +43,11 @@ public class Prop : MonoBehaviour
     private void DestroyProp()
     {
         Destroy(gameObject);
+    }
+
+    private void DoPropAction()
+    {
+        m_PropAction.DoAction();
     }
 
   
@@ -84,6 +83,8 @@ public class Prop : MonoBehaviour
 
     private void OnDestroyUI()
     {
+        m_AudioSource.Play();
+
         m_Animator.SetBool("OnInteract", false);
         m_Animator.SetBool("OnDestroy", true);
     }
@@ -100,10 +101,12 @@ public class Prop : MonoBehaviour
 
     #region getter setter
 
-    public LayerMask GetDeadlDamageLayerMask()
+    public LayerMask GetDealDamageLayerMask()
     {
         return m_DealDamageToLayerMask;
     }
+
+   
 
     #endregion
 }

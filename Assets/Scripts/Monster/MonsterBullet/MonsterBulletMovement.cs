@@ -57,7 +57,6 @@ public class MonsterBulletMovement : MonoBehaviour
     {
         if (!m_Exploded)
         {
-            Debug.Log("explode");
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_BulletExplodeRange, m_DealDamageLayerMask);
             foreach (Collider2D hit in hitColliders)
             {
@@ -65,7 +64,6 @@ public class MonsterBulletMovement : MonoBehaviour
                 PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
                 if (playerHealth)
                 {
-                    Debug.Log("explode hit player");
                     playerHealth.TakeDamage((int)m_Damage);
                 }
 
@@ -73,7 +71,6 @@ public class MonsterBulletMovement : MonoBehaviour
                 Prop prop = hit.GetComponent<Prop>();
                 if (prop)
                 {
-                    Debug.Log("explode hit prop");
                     prop.TakeDamage((int)m_Damage);
                 }
             }
@@ -96,7 +93,7 @@ public class MonsterBulletMovement : MonoBehaviour
         gameObject.SetActive(false);
         m_Animator.SetBool("explode", false);
         m_Exploded = false;
-
+        m_Moving = false;
     }
 
 
@@ -109,4 +106,6 @@ public class MonsterBulletMovement : MonoBehaviour
             m_Moving = true;
         }
     }
+
+    
 }
