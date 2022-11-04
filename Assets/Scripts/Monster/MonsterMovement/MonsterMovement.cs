@@ -5,50 +5,164 @@ using UnityEngine;
 
 public class MonsterMovement : MonoBehaviour
 {
+    [SerializeField] private Monster m_Monster;
+    [SerializeField] private LayerMask m_BlockLayerMask;
     [SerializeField] private BoxCollider2D m_BoxCollider;
     private float m_Speed;
-    private RaycastHit2D m_Hit;
-    // private float m_RandomDistanceToTarget = 2f;
+    private float m_AttackRange;
 
 
-    public void Move(Transform target)
+    
+    private MonsterMoving m_MovingMethod;
+
+
+    private void FixedUpdate()
     {
-        if (target != null)
+        Enums.MonsterBehavior monsterBehavior = m_Monster.GetCurrentStatus();
+
+        switch (m_Monster.GetCurrentStatus())
         {
-            // Vector3 randomDeltaDistance = new Vector3(UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), UnityEngine.Random.Range(-m_RandomDistanceToTarget, m_RandomDistanceToTarget), 0);
-            Vector3 dir = target.position - transform.position;
+            case Enums.MonsterBehavior.IDLE:
+                {
+                    m_Monster.OnIdleUI();
+                    DetectTarget();
 
-            Vector3 moveDelta = new Vector3(dir.x, dir.y, 0);
+                    // if status changed after the methods was apply, return to update the status in the next update 
+                    if(monsterBehavior != m_Monster.GetCurrentStatus())
+                    {
+                        return;
+                    }
 
-            moveDelta.Normalize();
+                    if (m_Monster.GetTarget() != null)
+                    {
+                        m_Monster.SetCurrentStatus(Enums.MonsterBehavior.APPROACH_FOR_TARGET);
+                    }
+                    else {
+                        m_Monster.SetCurrentStatus(Enums.MonsterBehavior.IDLE);
 
-            float step = Time.deltaTime * m_Speed;
-            float deltaY = moveDelta.y * step;
-            float deltaX = moveDelta.x * step;
+                    }
+                    return;
+                }
+            case Enums.MonsterBehavior.APPROACH_FOR_TARGET:
+                {
+                    Move();
 
-            m_Hit = Physics2D.BoxCast(m_BoxCollider.bounds.center, m_BoxCollider.size, 0,
-                                    new Vector2(0, moveDelta.y),
-                                    Mathf.Abs(deltaY),
-                                    LayerMask.GetMask("Blocking"));
-            if (m_Hit.collider == null)
-            {
-                transform.Translate(0, deltaY, 0);
-            }
+                    // if status changed after the methods was apply, return to update the status in the next update 
+                    if (monsterBehavior != m_Monster.GetCurrentStatus())
+                    {
+                        return;
+                    }
 
-            m_Hit = Physics2D.BoxCast(m_BoxCollider.bounds.center, m_BoxCollider.size, 0,
-                                    new Vector2(moveDelta.x, 0),
-                                    Mathf.Abs(deltaX),
-                                    LayerMask.GetMask("Blocking"));
-            if (m_Hit.collider == null)
-            {
-                transform.Translate(deltaX, 0, 0);
-            }
+                    // get distance to current target
+                    float distanceToTarget = Vector3.Distance(m_Monster.transform.position, m_Monster.GetTarget().transform.position);
+                    if (distanceToTarget <= m_AttackRange)
+                    {
+                        m_Monster.SetCurrentStatus(Enums.MonsterBehavior.ATTACK);
+                    }
+                    else if (distanceToTarget <= m_Monster.GetDetectTargetRange())
+                    {
+                        m_Monster.SetCurrentStatus(Enums.MonsterBehavior.APPROACH_FOR_TARGET);
+                    }
+                    else
+                    {
+                        m_Monster.SetCurrentStatus(Enums.MonsterBehavior.IDLE);
+                    }
+
+                    return;
+                }
+            
+            case Enums.MonsterBehavior.DEAD:
+                {
+                    m_BoxCollider.enabled = false;
+                    return;
+                }
+           
+            default:
+                {
+                    return;
+                }
         }
+    }
+
+    
+
+    public void Move()
+    {
+        m_MovingMethod.Move(m_Monster.GetTarget().transform);
     }
 
     public void ConfigMonsterData(MonsterConfig config)
     {
         m_Speed = config.speed;
+        m_AttackRange = config.attackRange;
+        m_MovingMethod = GetMovingMethod(config);
         // Later for further develop
+
+    }
+
+
+    private MonsterMoving GetMovingMethod(MonsterConfig config)
+    {
+        switch (config.movementType)
+        {
+            case Enums.MonsterMovementType.WALKING:
+                {
+                    return new MonsterWalking(this);
+                }
+            case Enums.MonsterMovementType.JUMPING:
+                {
+                    return new MonsterJumping(this);
+                }
+            default:
+                {
+                    return null;
+                }
+        }
+    }
+
+
+    private void DetectTarget()
+    {
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(m_Monster.transform.position, m_Monster.GetDetectTargetRange(), m_Monster.GetPlayerMask());
+        // if detect no target, return false
+        if (hitColliders.Length == 0)
+        {
+            m_Monster.SetTarget(null);
+            return;
+        }
+
+        float minDistance = float.MaxValue;
+
+        foreach (Collider2D hitCollider in hitColliders)
+        {
+            float distanceToHitCollider = Vector2.Distance(m_Monster.transform.position, hitCollider.gameObject.transform.position);
+            if (minDistance > distanceToHitCollider)
+            {
+                minDistance = distanceToHitCollider;
+                m_Monster.SetTarget(hitCollider.gameObject);
+            }
+        }
+    }
+
+
+
+    public float GetSpeed()
+    {
+        return m_Speed;
+    }
+
+    public BoxCollider2D GetCollider()
+    {
+        return m_BoxCollider;
+    }
+
+    public LayerMask GetBlockLayerMask()
+    {
+        return m_BlockLayerMask;
+    }
+
+    public Monster GetMonster()
+    {
+        return m_Monster;
     }
 }

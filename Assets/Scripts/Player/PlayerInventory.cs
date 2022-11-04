@@ -10,6 +10,11 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private Text m_MedkitCount;
     [SerializeField] private Text m_EnergyDrinkCount;
     [SerializeField] private Text m_ResourceCount;
+    [SerializeField] private AudioSource m_PickupSound;
+    [SerializeField] private AudioSource m_HealSound;
+    [SerializeField] private AudioSource m_DrinkSound;
+    [SerializeField] private AudioSource m_CraftSound;
+    [SerializeField] private AudioSource m_ShootSound;
 
     private SaveSystem m_Save;
 
@@ -59,6 +64,7 @@ public class PlayerInventory : MonoBehaviour
         if (item.m_IsCollected)
             return;
 
+        m_PickupSound.Play();
         if (collision.gameObject.CompareTag("Bullet"))
         {
             item.m_IsCollected = true;
@@ -100,6 +106,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (m_NumBullets > 0)
         {
+            m_ShootSound.Play();
             m_NumBullets--;
             m_BulletCount.text = m_NumBullets.ToString();
             return true;
@@ -122,6 +129,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if (m_NumMedkits > 0)
         {
+            m_HealSound.Play();
             m_NumMedkits--;
             m_MedkitCount.text = m_NumMedkits.ToString();
             return true;
@@ -133,10 +141,59 @@ public class PlayerInventory : MonoBehaviour
     {
         if (m_NumEnergyDrinks > 0)
         {
+            m_DrinkSound.Play();
             m_NumEnergyDrinks--;
             m_EnergyDrinkCount.text = m_NumEnergyDrinks.ToString();
             return true;
         }
         return false;
+    }
+
+    public void CraftBullet()
+    {
+        if (m_NumResources >= 15)
+        {
+            m_CraftSound.Play();
+            m_NumResources -= 15;
+            m_NumBullets += 64;
+            m_BulletCount.text = m_NumBullets.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
+    }
+
+    public void CraftGrenade()
+    {
+        if (m_NumResources >= 25)
+        {
+            m_CraftSound.Play();
+            m_NumResources -= 25;
+            m_NumGrenades += 1;
+            m_GrenadeCount.text = m_NumGrenades.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
+    }
+
+    public void CraftMedkit()
+    {
+        if (m_NumResources >= 15)
+        {
+            m_CraftSound.Play();
+            m_NumResources -= 15;
+            m_NumMedkits += 1;
+            m_MedkitCount.text = m_NumMedkits.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
+    }
+
+    public void CraftEnergyDrink()
+    {
+        if (m_NumResources >= 10)
+        {
+            m_CraftSound.Play();
+            m_NumResources -= 10;
+            m_NumEnergyDrinks += 1;
+            m_EnergyDrinkCount.text = m_NumEnergyDrinks.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
     }
 }

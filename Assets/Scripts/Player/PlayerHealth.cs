@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Behaviour[] m_Components;
     [SerializeField] private HealthBar m_HealthBar;
     [SerializeField] private Transform m_Effect;
+    [SerializeField] private GameObject m_DieMenu;
+    [SerializeField] private AudioSource m_HurtSound;
 
     private SpriteRenderer m_Sprite;
     private Animator m_Animator;
@@ -75,7 +77,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (m_Invincible == true || m_IsDeath)
             return;
-        
+
+        m_HurtSound.Play();
         m_Invincible = true;
         m_CurrentHealth = m_CurrentHealth - damage;
 
@@ -117,11 +120,7 @@ public class PlayerHealth : MonoBehaviour
         m_Animator.SetTrigger("death");
         foreach (Behaviour component in m_Components)
             component.enabled = false;  
-    }
 
-    private void OnTriggerStay2D(Collider2D collision) 
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-            TakeDamage(1);     
+        m_DieMenu.SetActive(true);
     }
 }

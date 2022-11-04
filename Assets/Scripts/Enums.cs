@@ -8,7 +8,9 @@ public class Enums
     {
         IDLE = 0,
         APPROACH_FOR_TARGET = 1,
-        ATTACK = 2
+        ATTACK = 2,
+        DEAD = 3,
+        DO_NOTHING = 4
     }
 
 
@@ -21,5 +23,20 @@ public class Enums
         RANGE = 1,
         // Explode
         EXPLODE = 2
+    }
+
+    public enum MonsterMovementType
+    {
+        WALKING = 0,
+        JUMPING = 1
+    }
+
+
+    public enum PropType
+    {
+        // prop can be destroy an do nothing
+        NORMAL = 0,
+        // explode after being destroy
+        EXPLODE
     }
 }

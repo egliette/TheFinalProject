@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GrenadeProjectile : MonoBehaviour
 {
-    [SerializeField] private float m_Speed = 10f;
+    [SerializeField] private float m_Speed = 20f;
     [SerializeField] private PlayerShooting m_PlayerShooting;
+    [SerializeField] private AudioSource m_ExplosionAudio;
     
     private BoxCollider2D m_Coll;
     private bool m_Hit;
@@ -21,6 +22,7 @@ public class GrenadeProjectile : MonoBehaviour
 
     public void Explode()
     {
+        m_ExplosionAudio.Play();
         m_Hit = true;
         m_Coll.enabled = false;
         m_Anim.SetTrigger("explode");
@@ -32,6 +34,11 @@ public class GrenadeProjectile : MonoBehaviour
             {
                 MonsterHealth monsterHealth = coll.gameObject.transform.GetComponent<MonsterHealth>();
                 monsterHealth.TakeDamage(m_PlayerShooting.m_GrenadeDamage);
+            }
+            if (coll.gameObject.layer == LayerMask.NameToLayer("Props"))
+            {
+                Prop prop = coll.gameObject.transform.GetComponent<Prop>();
+                prop.TakeDamage(m_PlayerShooting.m_ShootDamage);
             }
         }
     }
@@ -45,11 +52,11 @@ public class GrenadeProjectile : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, m_Direction, 2 * movementSpeed);
         if (hit) 
         {
-            string collName = hit.collider.name;
-            if (collName == "Collision" || collName == "Zombie") 
+            if (hit.collider.name == "Collision" || 
+                hit.collider.gameObject.CompareTag("Enemy")) 
             {
                 transform.position = hit.point;
-                Explode();
+                OnTriggerEnter2D(hit.collider);
             }
         }
 
@@ -71,6 +78,10 @@ public class GrenadeProjectile : MonoBehaviour
             Explode();
         }
         else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Explode();
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Props"))
         {
             Explode();
         }

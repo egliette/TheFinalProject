@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9110215494573704286}
   - component: {fileID: 9110215494573704281}
   - component: {fileID: 9110215494573704256}
-  m_Layer: 9
+  m_Layer: 11
   m_Name: EnergyDrinkItem
   m_TagString: EnergyDrink
   m_Icon: {fileID: 0}

@@ -6,34 +6,38 @@ using UnityEngine;
 public class MonsterHealth : MonoBehaviour
 {
     [SerializeField] private Monster m_Monster;
-    [SerializeField] private SpriteRenderer m_Sprite;
+    [SerializeField] private SpriteRenderer m_SpriteRenderer;
 
     private Color originColor;
     private float m_StartHealth;
     private float m_CurrentHealth;
-    private bool m_Dead;
     private float m_HurtDelayTime = 0.2f;
 
 
     private void OnEnable()
     {
-        m_Dead = false;
-        originColor = m_Sprite.color;
+        originColor = m_SpriteRenderer.color;
     }
 
     private void OnDeath()
     {
-        m_Dead = true;
+        MonsterManager.Instance.RemoveMonster(m_Monster);
         m_Monster.OnDeadUI();
+        m_Monster.SetCurrentStatus(Enums.MonsterBehavior.DEAD);
+    }
+
+    private void KillMonster()
+    {
+        Destroy(gameObject);
     }
 
     private IEnumerator Hurt()
     {
-        m_Sprite.color = Color.red;
+        m_SpriteRenderer.color = Color.red;
 
         yield return new WaitForSeconds(m_HurtDelayTime);
 
-        m_Sprite.color = originColor;
+        m_SpriteRenderer.color = originColor;
     }
 
 
@@ -51,7 +55,7 @@ public class MonsterHealth : MonoBehaviour
     public void TakeDamage(float amount)
     {
         m_CurrentHealth -= amount;
-        if (m_CurrentHealth <= 0 && !m_Dead)
+        if (m_CurrentHealth <= 0)
         {
             OnDeath();
         }

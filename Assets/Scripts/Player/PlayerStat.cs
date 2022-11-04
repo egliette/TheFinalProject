@@ -5,6 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStat
 {
+    // Current wave
+    public int stage = 1; 
+
     // Player health
     public int startingHealth = 10;
     public int currentHealth = 0;

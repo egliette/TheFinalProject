@@ -13,6 +13,7 @@ public class BulletProjectile : MonoBehaviour
     private float m_LifeTime;
     private Animator m_Anim;
 
+
     private void Awake()
     {
         m_Anim = GetComponent<Animator>();
@@ -35,11 +36,11 @@ public class BulletProjectile : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, m_Direction, 2 * movementSpeed);
         if (hit) 
         {
-            string collName = hit.collider.name;
-            if (collName == "Collision" || collName == "Zombie") 
+            if (hit.collider.name == "Collision" || 
+                hit.collider.gameObject.CompareTag("Enemy")) 
             {
                 transform.position = hit.point;
-                Explode();
+                OnTriggerEnter2D(hit.collider);
             }
         }
 
@@ -64,6 +65,12 @@ public class BulletProjectile : MonoBehaviour
             Explode();
             MonsterHealth monsterHealth = collision.gameObject.transform.GetComponent<MonsterHealth>();
             monsterHealth.TakeDamage(m_PlayerShooting.m_ShootDamage);
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Props"))
+        {
+            Explode();
+            Prop prop = collision.gameObject.transform.GetComponent<Prop>();
+            prop.TakeDamage(m_PlayerShooting.m_ShootDamage);
         }
     }
 
