@@ -47,19 +47,6 @@ public partial class Monster : MonoBehaviour
         FlipAnimation();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        GameObject obj = collision.gameObject;
-        if(Utils.IsInLayerMask(obj, m_PlayerMask))
-        {
-            PlayerHealth playerHealth = obj.GetComponent<PlayerHealth>();
-            if (playerHealth)
-            {
-                playerHealth.TakeDamage(10);
-            }
-        }
-    }
-
     private void FlipAnimation()
     {
         // flip animation

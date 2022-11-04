@@ -13,6 +13,7 @@ public class BulletProjectile : MonoBehaviour
     private float m_LifeTime;
     private Animator m_Anim;
 
+
     private void Awake()
     {
         m_Anim = GetComponent<Animator>();

@@ -172,4 +172,4 @@ MonoBehaviour:
   m_DealDamageLayerMask:
     serializedVersion: 2
     m_Bits: 520
-  m_Damage: 3
+  m_Damage: 1

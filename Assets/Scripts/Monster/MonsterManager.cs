@@ -11,6 +11,8 @@ public class MonsterManager : MonoBehaviour
 
     public MonsterAssetsPath m_MonsterAssets;
 
+    private bool m_EndGame = false;
+
     #region Singleton
     public static MonsterManager Instance;
     private void Awake()
@@ -58,17 +60,16 @@ public class MonsterManager : MonoBehaviour
 
     public bool NoMonsterLeft()
     {
-        return m_ActiveMonsters.Count == 0;
+        return m_EndGame && m_ActiveMonsters.Count==0;
     }
 
-    public void SpawnNewMonsterWave(int stageID, float waitTime)
+    public void SpawnNewMonsterWave(int stageID, float waitTime, Vector3 position)
     {
-        StartCoroutine(CreateMonsterWave(stageID, waitTime));
-
+        StartCoroutine(CreateMonsterWave(stageID, waitTime, position));
     }
 
 
-    private IEnumerator CreateMonsterWave(int stageID, float waitTime)
+    private IEnumerator CreateMonsterWave(int stageID, float waitTime, Vector3 position)
     {
         yield return new WaitForSeconds(waitTime);
         Debug.Log("After " + waitTime);
@@ -78,26 +79,26 @@ public class MonsterManager : MonoBehaviour
         // spawn monster every m_SpawnTimeInterval seconds
         for (int i = 0; i< config.TotalNormalMonster; ++i)
         {
-            CreateNewMonster(0, config.SpawnPosition).SetDetecTargetRange(50);
+            CreateNewMonster(0, position).SetDetecTargetRange(50);
             yield return new WaitForSeconds(config.SpawnTimeInterval);
 
         }
 
         for (int i = 0; i < config.TotalRangeMonster; ++i)
         {
-            CreateNewMonster(1, config.SpawnPosition).SetDetecTargetRange(50);
+            CreateNewMonster(1, position).SetDetecTargetRange(50);
             yield return new WaitForSeconds(config.SpawnTimeInterval);
 
         }
 
         for (int i = 0; i < config.TotalExplodeMonster; ++i)
         {
-            CreateNewMonster(2, config.SpawnPosition).SetDetecTargetRange(50);
+            CreateNewMonster(2, position).SetDetecTargetRange(50);
             yield return new WaitForSeconds(config.SpawnTimeInterval);
 
         }
-        yield return null;
-
+        yield return new WaitForSeconds(config.SpawnTimeInterval);
+        m_EndGame = true;
     }
 
 

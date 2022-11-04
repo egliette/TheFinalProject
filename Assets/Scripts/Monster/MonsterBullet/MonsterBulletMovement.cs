@@ -59,7 +59,7 @@ public class MonsterBulletMovement : MonoBehaviour
         {
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(transform.position, m_BulletExplodeRange, m_DealDamageLayerMask);
             foreach (Collider2D hit in hitColliders)
-            {
+            {   
                 // hit player
                 PlayerHealth playerHealth = hit.GetComponent<PlayerHealth>();
                 if (playerHealth)

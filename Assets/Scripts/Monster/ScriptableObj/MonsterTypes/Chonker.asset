@@ -20,8 +20,8 @@ MonoBehaviour:
   detectTargetRange: 7
   attackType: 0
   attackRange: 1
-  damage: 10
-  attackRate: 2
+  damage: 1
+  attackRate: 1
   monsterAnimator: {fileID: 9100000, guid: 015451bfab8234f4690cce51c4d8b6b6, type: 2}
   attackSound: {fileID: 8300000, guid: 3eeef056f0b6c1c4f8fdbc263feb5226, type: 3}
   deadSound: {fileID: 8300000, guid: 952e35cf940fbec4fab87f61a8dcecde, type: 3}

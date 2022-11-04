@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Speed: 30
   m_PlayerShooting: {fileID: 6509132546810881044, guid: cf93e602dd3d45f42b4dd4e45badb02a, type: 3}
+  m_ShootSound: {fileID: 0}
 --- !u!95 &638234066348923255
 Animator:
   serializedVersion: 3

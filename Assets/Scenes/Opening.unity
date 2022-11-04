@@ -242,7 +242,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -521,7 +521,7 @@ MonoBehaviour:
     Sciences and Humanities.@ Since I was a child, I have had a desire to restore
     damaged things, so I was looking forward to studying this field.
   - Date XX/XX/2023@@  I started working on my graduation project. The topic is research
-    on relics on Cu Lao island.@ To get the best results, I joined the research team
+    on relics on an island.@ To get the best results, I joined the research team
     that went all the way to the island for work.
   - Date XX/XX/2023@@  While exploring a cave with the group, because the terrain
     was not very flat, I tripped and dropped the flashlight. Because I didn't want
@@ -535,6 +535,7 @@ MonoBehaviour:
   - How to play:@ Arrow keys/WASD = Move@ Left mouse = Shoot@ Right mouse = Grenade@
     Q = Medkit@ E = Energy drink@ P = Pause
   m_DialougeText: {fileID: 1459907486}
+  m_NextScene: Stage1
 --- !u!1 &1277638705
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,8 +570,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: 0.50001}
-  m_SizeDelta: {x: 1062, y: 410}
+  m_AnchoredPosition: {x: -1.0034, y: 0.49999}
+  m_SizeDelta: {x: 1662.2, y: 599}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1277638707
 MonoBehaviour:
@@ -689,6 +690,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1459907484}
   m_CullTransparentMesh: 1
+--- !u!1001 &1600441366
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 64.57574
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5044775
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5435.2354
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256922, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3385441664354256996, guid: a0125271a1e666945aafc549a57747dc, type: 3}
+      propertyPath: m_Name
+      value: MenuBGM
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a0125271a1e666945aafc549a57747dc, type: 3}
 --- !u!1 &2090661514
 GameObject:
   m_ObjectHideFlags: 0

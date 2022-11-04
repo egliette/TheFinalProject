@@ -6,6 +6,7 @@ public class GrenadeProjectile : MonoBehaviour
 {
     [SerializeField] private float m_Speed = 10f;
     [SerializeField] private PlayerShooting m_PlayerShooting;
+    [SerializeField] private AudioSource m_ExplosionAudio;
     
     private BoxCollider2D m_Coll;
     private bool m_Hit;
@@ -21,6 +22,7 @@ public class GrenadeProjectile : MonoBehaviour
 
     public void Explode()
     {
+        m_ExplosionAudio.Play();
         m_Hit = true;
         m_Coll.enabled = false;
         m_Anim.SetTrigger("explode");

@@ -9,6 +9,7 @@ public class DialougeManager : MonoBehaviour
 {
     [SerializeField] private string[] m_SentencesList;
     [SerializeField] private Text m_DialougeText;
+    [SerializeField] private string m_NextScene;
     Queue<string> m_SentencesQueue;
 
 
@@ -21,7 +22,7 @@ public class DialougeManager : MonoBehaviour
     public void NextSentence()
     {
         if (m_SentencesQueue.Count == 0)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(m_NextScene);
         else 
         {
             string sentence = m_SentencesQueue.Dequeue();
