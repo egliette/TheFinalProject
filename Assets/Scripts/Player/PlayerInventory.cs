@@ -139,4 +139,48 @@ public class PlayerInventory : MonoBehaviour
         }
         return false;
     }
+
+    public void CraftBullet()
+    {
+        if (m_NumResources >= 15)
+        {
+            m_NumResources -= 15;
+            m_NumBullets += 64;
+            m_BulletCount.text = m_NumBullets.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
+    }
+
+    public void CraftGrenade()
+    {
+        if (m_NumResources >= 25)
+        {
+            m_NumResources -= 25;
+            m_NumGrenades += 1;
+            m_GrenadeCount.text = m_NumGrenades.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
+    }
+
+    public void CraftMedkit()
+    {
+        if (m_NumResources >= 15)
+        {
+            m_NumResources -= 15;
+            m_NumMedkits += 1;
+            m_MedkitCount.text = m_NumMedkits.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
+    }
+
+    public void CraftEnergyDrink()
+    {
+        if (m_NumResources >= 10)
+        {
+            m_NumResources -= 10;
+            m_NumEnergyDrinks += 1;
+            m_EnergyDrinkCount.text = m_NumEnergyDrinks.ToString();
+            m_ResourceCount.text = m_NumResources.ToString();
+        }
+    }
 }

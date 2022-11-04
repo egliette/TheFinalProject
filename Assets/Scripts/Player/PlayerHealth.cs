@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Behaviour[] m_Components;
     [SerializeField] private HealthBar m_HealthBar;
     [SerializeField] private Transform m_Effect;
+    [SerializeField] private GameObject m_DieMenu;
 
     private SpriteRenderer m_Sprite;
     private Animator m_Animator;
@@ -117,6 +118,8 @@ public class PlayerHealth : MonoBehaviour
         m_Animator.SetTrigger("death");
         foreach (Behaviour component in m_Components)
             component.enabled = false;  
+
+        m_DieMenu.SetActive(true);
     }
 
     private void OnTriggerStay2D(Collider2D collision) 

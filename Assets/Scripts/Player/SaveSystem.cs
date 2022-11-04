@@ -44,6 +44,39 @@ public class SaveSystem : MonoBehaviour
         stream.Close();
     }
 
+    public void SavePlayerInventory()
+    {
+        PlayerInventory inventory = GetComponent<PlayerInventory>();
+      
+        m_PlayerStat = inventory.SaveStat(m_PlayerStat);
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/playerstat.fun";
+        FileStream stream = new FileStream(path, 
+                                           FileMode.Create,
+                                           FileAccess.ReadWrite, 
+                                           FileShare.None);
+
+        formatter.Serialize(stream, m_PlayerStat);
+        stream.Close();
+    }
+
+
+    public void SaveNewGame()
+    {
+        PlayerStat stat = new PlayerStat();
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        string path = Application.persistentDataPath + "/playerstat.fun";
+        FileStream stream = new FileStream(path, 
+                                           FileMode.Create,
+                                           FileAccess.ReadWrite, 
+                                           FileShare.None);
+
+        formatter.Serialize(stream, stat);
+        stream.Close();
+    }
+
     private PlayerStat GetCurrentPlayerStat()
     {
         PlayerHealth health = GetComponent<PlayerHealth>();

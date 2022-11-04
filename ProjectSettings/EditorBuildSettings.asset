@@ -9,9 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 4a3296cfd709e2849ae002f7723214b4
+  - enabled: 1
+    path: Assets/Scenes/Opening.unity
+    guid: 7d8d19b5699432541af667f3476aef69
+  - enabled: 1
     path: Assets/Scenes/Stage1.unity
     guid: 4d6d361b66eaf5341bd461dafc2eb33e
   - enabled: 1
     path: Assets/Scenes/Stage1Part2.unity
     guid: 435c2305e9b18514bb026bbb6f9a467b
+  - enabled: 1
+    path: Assets/Scenes/CraftDialouge.unity
+    guid: f1858b8d856a5124b97378c9cdf36b13
+  - enabled: 1
+    path: Assets/Scenes/CraftingTable.unity
+    guid: b7394794131e5a4409a911a4384d9c55
+  - enabled: 1
+    path: Assets/Scenes/ChooseLevel.unity
+    guid: 92adb76a6a97e184b9236e3643830c3c
   m_configObjects: {}
