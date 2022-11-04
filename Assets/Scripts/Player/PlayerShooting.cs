@@ -12,8 +12,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float m_GrenadeCooldown = 0.1f;
     [SerializeField] private Transform m_FirePoint;
 
-    public float m_ShootDamage = 1f;
-    public float m_GrenadeDamage = 10f;
+    public float m_ShootDamage = 2f;
+    public float m_GrenadeDamage = 100f;
     public float m_GrenadeRange = 1.75f;
 
     private SpriteRenderer m_GunSprite;

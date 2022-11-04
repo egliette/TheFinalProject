@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrenadeProjectile : MonoBehaviour
 {
-    [SerializeField] private float m_Speed = 10f;
+    [SerializeField] private float m_Speed = 20f;
     [SerializeField] private PlayerShooting m_PlayerShooting;
     [SerializeField] private AudioSource m_ExplosionAudio;
     
